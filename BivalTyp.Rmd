@@ -1,6 +1,6 @@
 ---
-title: "Salos 2024 summer school: Linguistic data from fieldwork to R"
-author: "Steven Moran"
+title: "Salos 2024 summer school: Working with BivalTyp"
+author: "Steven Moran and Alena Witzlack"
 date: "(`r format(Sys.time(), '%d %B, %Y')`)"
 output:
   github_document:

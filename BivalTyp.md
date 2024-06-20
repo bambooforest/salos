@@ -1,6 +1,6 @@
-Salos 2024 summer school: Linguistic data from fieldwork to R
+Salos 2024 summer school: Working with BivalTyp
 ================
-Steven Moran
+Steven Moran and Alena Witzlack
 (20 June, 2024)
 
 - [Introduction](#introduction)

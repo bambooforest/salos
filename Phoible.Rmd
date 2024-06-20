@@ -1,0 +1,8 @@
+---
+title: "Salos 2024 summer school: Working with PHOIBLE"
+author: "Steven Moran and Alena Witzlack"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output:
+  github_document:
+      toc: true
+---
