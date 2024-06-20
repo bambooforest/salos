@@ -9,6 +9,16 @@ output:
 
 ***
 
+<!-- https://www.academiasalensis.org/en/conference-and-summer-school/2024-summer-school/ 
+
+- basic tidyverse
+- i/o
+- select, filter, summarize
+- visualize
+- basic stats
+
+-->
+
 # Getting started
 
 To get started with this course, you will need to [install](https://en.wikipedia.org/wiki/Installation_(computer_programs)) several software packages and get to know how to use them. Follow all the steps that you need below.
@@ -78,15 +88,16 @@ Then RStudio should "knit" (aka "[compile](https://en.wikipedia.org/wiki/Compile
 
 You will also want a [spreadsheet program](https://en.wikipedia.org/wiki/Spreadsheet), so that you can look at and manipulate data in [tabular formats](https://en.wikipedia.org/wiki/Table_(information)). Here are some options:
 
-* [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)
-* [OpenOffice](https://en.wikipedia.org/wiki/Apache_OpenOffice)
-* [Numbers](https://en.wikipedia.org/wiki/Numbers_(spreadsheet))
+* [Google sheets](https://docs.google.com/spreadsheets/u/0/?ec=asw-sheets-hero-goto) -- online
+* [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) -- Microsoft
+* [Numbers](https://en.wikipedia.org/wiki/Numbers_(spreadsheet)) -- macOS
 
-Here is an excellent introduction to Excel ("You Suck at Excel with Joel Spolsky"):
+Here is an excellent introduction to Excel ("You Suck at Excel with Joel Spolsky") for advanced topics:
 
 * https://www.youtube.com/watch?v=0nbkaYsR94c
 
 
+<!-- 
 # Text editor (optional, but suggested)
 
 You may need a good [text editor](https://en.wikipedia.org/wiki/Text_editor) to access and edit [plain text](https://en.wikipedia.org/wiki/Plain_text). Please try to understand the difference between plain text and so-called [rich text](https://en.wikipedia.org/wiki/Formatted_text). For example, a good text editor is not [Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word) -- MS Word is a good rich text editor. Depending on your computer's [operating system](https://en.wikipedia.org/wiki/Operating_system), you might consider for example:
@@ -99,3 +110,5 @@ If you are using some form of [Linux](https://en.wikipedia.org/wiki/Linux) you p
 Note: there are many other plain text editor software programs out there. [LMGTFY](https://www.dictionary.com/e/slang/lmgtfy/):
 
 * [https://www.google.com/search?&q=best+plain+text+editors](https://www.google.com/search?&q=best+plain+text+editors)
+
+-->

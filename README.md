@@ -1,7 +1,7 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran
-(16 June, 2024)
+(20 June, 2024)
 
 - [Getting started](#getting-started)
 - [R](#r)
@@ -10,10 +10,16 @@ Steven Moran
   RStudio?](#what-is-the-difference-between-r-and-rstudio)
 - [Make sure that RStudio works](#make-sure-that-rstudio-works)
 - [Spreadsheets](#spreadsheets)
-- [Text editor (optional, but
-  suggested)](#text-editor-optional-but-suggested)
 
 ------------------------------------------------------------------------
+
+<!-- https://www.academiasalensis.org/en/conference-and-summer-school/2024-summer-school/ 
+&#10;- basic tidyverse
+- i/o
+- select, filter, summarize
+- visualize
+- basic stats
+&#10;-->
 
 # Getting started
 
@@ -126,40 +132,24 @@ look at and manipulate data in [tabular
 formats](https://en.wikipedia.org/wiki/Table_(information)). Here are
 some options:
 
-- [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)
-- [OpenOffice](https://en.wikipedia.org/wiki/Apache_OpenOffice)
-- [Numbers](https://en.wikipedia.org/wiki/Numbers_(spreadsheet))
+- [Google
+  sheets](https://docs.google.com/spreadsheets/u/0/?ec=asw-sheets-hero-goto)
+  – online
+- [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) –
+  Microsoft
+- [Numbers](https://en.wikipedia.org/wiki/Numbers_(spreadsheet)) – macOS
 
 Here is an excellent introduction to Excel (“You Suck at Excel with Joel
-Spolsky”):
+Spolsky”) for advanced topics:
 
 - <https://www.youtube.com/watch?v=0nbkaYsR94c>
 
+<!-- 
 # Text editor (optional, but suggested)
-
-You may need a good [text
-editor](https://en.wikipedia.org/wiki/Text_editor) to access and edit
-[plain text](https://en.wikipedia.org/wiki/Plain_text). Please try to
-understand the difference between plain text and so-called [rich
-text](https://en.wikipedia.org/wiki/Formatted_text). For example, a good
-text editor is not [Microsoft
-Word](https://en.wikipedia.org/wiki/Microsoft_Word) – MS Word is a good
-rich text editor. Depending on your computer’s [operating
-system](https://en.wikipedia.org/wiki/Operating_system), you might
-consider for example:
-
-- [BBEdit](https://en.wikipedia.org/wiki/BBEdit):
-  <https://www.barebones.com/products/bbedit/>
-  ([macOS](https://en.wikipedia.org/wiki/MacOS))
-- [Notepad++](https://en.wikipedia.org/wiki/Notepad%2B%2B):
-  <https://notepad-plus-plus.org> ([Microsoft
-  Windows](https://en.wikipedia.org/wiki/Microsoft_Windows))
-
-If you are using some form of
-[Linux](https://en.wikipedia.org/wiki/Linux) you probably already know
-what you’re doing.
-
-Note: there are many other plain text editor software programs out
-there. [LMGTFY](https://www.dictionary.com/e/slang/lmgtfy/):
-
-- <https://www.google.com/search?&q=best+plain+text+editors>
+&#10;You may need a good [text editor](https://en.wikipedia.org/wiki/Text_editor) to access and edit [plain text](https://en.wikipedia.org/wiki/Plain_text). Please try to understand the difference between plain text and so-called [rich text](https://en.wikipedia.org/wiki/Formatted_text). For example, a good text editor is not [Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word) -- MS Word is a good rich text editor. Depending on your computer's [operating system](https://en.wikipedia.org/wiki/Operating_system), you might consider for example:
+&#10;* [BBEdit](https://en.wikipedia.org/wiki/BBEdit): https://www.barebones.com/products/bbedit/ ([macOS](https://en.wikipedia.org/wiki/MacOS)) 
+* [Notepad++](https://en.wikipedia.org/wiki/Notepad%2B%2B): https://notepad-plus-plus.org ([Microsoft Windows](https://en.wikipedia.org/wiki/Microsoft_Windows))
+&#10;If you are using some form of [Linux](https://en.wikipedia.org/wiki/Linux) you probably already know what you're doing.
+&#10;Note: there are many other plain text editor software programs out there. [LMGTFY](https://www.dictionary.com/e/slang/lmgtfy/):
+&#10;* [https://www.google.com/search?&q=best+plain+text+editors](https://www.google.com/search?&q=best+plain+text+editors)
+&#10;-->
