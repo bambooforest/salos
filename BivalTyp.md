@@ -4,14 +4,13 @@ Steven Moran
 (20 June, 2024)
 
 - [Introduction](#introduction)
+- [Explore the data](#explore-the-data)
 
 ------------------------------------------------------------------------
 
 ``` r
 library(tidyverse)
 ```
-
-------------------------------------------------------------------------
 
 # Introduction
 
@@ -66,39 +65,23 @@ But then you need to make sure that they are:
     means you’ve set the working directory to where you Rmd file is):
 
 ``` r
-setwd(".")
-df <- read_csv('data_for_download.csv')
+df <- read_tsv('data_for_download.csv')
 ```
-
-    ## Warning: One or more parsing issues, call `problems()` on your data frame for details,
-    ## e.g.:
-    ##   dat <- vroom(...)
-    ##   problems(dat)
 
 2.  You load the file from the working directory to where the data file
     is, e.g.:
 
 ``` r
-df <- read_csv('data/data_for_download.csv')
+df <- read_tsv('data/data_for_download.csv')
 ```
-
-    ## Warning: One or more parsing issues, call `problems()` on your data frame for details,
-    ## e.g.:
-    ##   dat <- vroom(...)
-    ##   problems(dat)
 
 3.  If the data are available online, e.g., in a GitHub repository (or
     elsewhere), you can load the data directly into R/RStudio with the
     `url()` function and a URL:
 
 ``` r
-df <- read_csv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/data_for_download.csv'))
+df <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/data_for_download.csv'))
 ```
-
-    ## Warning: One or more parsing issues, call `problems()` on your data frame for details,
-    ## e.g.:
-    ##   dat <- vroom(...)
-    ##   problems(dat)
 
 But be careful – it has to be the URL to the **raw data**, not the
 webpage! Click on the “Raw” button in GitHub to get the URL in the
@@ -109,4 +92,15 @@ browswer window.
 <figcaption aria-hidden="true">Open RStudio.</figcaption>
 </figure>
 
+Another issue to remember – although the file is labeled CSV for “comma
+separated values”, the actual file is separated by tabs. Linguists often
+use TSV (i.e., tab separted values) for display purposes.
+
+In R/RStudio you can specify the
+[delimiter](https://en.wikipedia.org/wiki/Delimiter), e.g., that it is
+tab instead of comma. Comma is the default standard, but in the wild you
+will come across many different characters as delimiters.
+
 ------------------------------------------------------------------------
+
+# Explore the data
