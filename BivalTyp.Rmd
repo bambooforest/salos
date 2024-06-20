@@ -76,3 +76,4 @@ In R/RStudio you can specify the [delimiter](https://en.wikipedia.org/wiki/Delim
 
 # Explore the data
 
+# Join tables
