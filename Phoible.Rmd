@@ -56,13 +56,73 @@ When a data table (aka spreadsheet) is smaller, GitHub will display it online fo
 
 ***
 
-How do we load the data into R/RStudio?
+How do we load the data into R/RStudio? You can simply use the variable name that you loaded the data into. `df` is a commonly used abbreviation for "data frame", i.e., the data structure used with in R for example for tabular data (more below).
 
 ```{r}
 df <- read_csv('data/phoible.csv')
+```
+
+How do we have a quick look at it?
+
+```{r}
 df
 ```
 
+How do we programmatically look at its structure, i.e., how do we know what it has in its columns and rows?
+
+```{r}
+str(df)
+```
+
+# Tabular data
+
+In this course, we are mainly going to be dealing with data in [plain text](https://en.wikipedia.org/wiki/Plain_text) and structured data in rectangular format, also known as **tabular data**. Here are some descriptions:
+
+* https://en.wikipedia.org/wiki/Table_(information)
+* https://papl.cs.brown.edu/2016/intro-tabular-data.html
+* https://www.w3.org/TR/tabular-data-model/
+
+Tabular data **can be stored in many ways**, e.g.:
+
+* [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
+* [Excel sheets](https://en.wikipedia.org/wiki/Microsoft_Excel)
+* [Google sheets](https://en.wikipedia.org/wiki/Google_Sheets)
+* [Numbers](https://en.wikipedia.org/wiki/Numbers_(spreadsheet))
+* [SQLite](https://en.wikipedia.org/wiki/SQLite)
+* [JSON](https://en.wikipedia.org/wiki/JSON)
+
+Which of these formats above are stored in plain text?
+
+In a table data format, every column represents a particular variable (e.g., a person's height, number of of vowels) and each row/record corresponds to a given member of the data set in question (e.g. a person, in a language). Tabular data are inherently rectangular and cannot have "ragged rows". If any row is lacking information for a particular column, a missing value (`NA`) is stored in that cell.
+
+For most people working with small amounts of data, the data table is the fundamental unit of organization because it is both a way of organizing data that can be processed by humans and machines. In practice, to enter, organize, modify, analyze, and store data in tabular form -- it is common for people to use spreadsheet applications. You are probably familiar for example with Excel spreadsheets. 
+
+Many statistical software packages use similar spreadsheets and many are able to import Excel spreadsheets. R is no different.
+
+***
+
+Tabular (or table) data has several properties. It consists of [rows and columns](https://en.wikipedia.org/wiki/Row_and_column_vectors) in the linear algebra sense, and [rows](https://en.wikipedia.org/wiki/Row_(database)) and [columns](https://en.wikipedia.org/wiki/Column_(database)) in the relational database sense.
+
+[Columns](https://en.wikipedia.org/wiki/Column_(database)) in tabular data contain a set of data of a particular type and contain (typically) one value (data type -- see above) for each row in the table. 
+
+Each [row](https://en.wikipedia.org/wiki/Row_(database)) in the table contains an observation, in which each row represents a set of related data, i.e., every row has the same structure and each cell in each row should adhere to the column's specification (i.e., that data type of that column).
+
+![Variables and observations in a table](figures/table_example.png)
+In sum:
+
+* Every **column** represents a particular variable (height, weight, number of vowels).
+
+* Each **row/record** corresponds to a given member of the data set in question (e.g. a person, a sentence, a language, a phoneme, a measurement).
+
+* Every record shares the same set of variables, i.e., **every row has the same set of column headers**.
+
+* Tabular data are **inherently rectangular** and cannot have "ragged rows".
+
+* Each value (each cell) is **known as a datum**.
+
+* If any row is lacking information for a particular column a **missing value (NA)** must be stored in that cell.
+
+***
 
 
 

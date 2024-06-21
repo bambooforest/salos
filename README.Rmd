@@ -21,10 +21,60 @@ The curriculum has three parts:
 2. Data annotation. Lecturer: dr. Alena Witzlack-Makarevich, the Hebrew University of Jerusalem
 3. Quantitative methods. Lecturer: dr. Steven Moran, Université de Neuchâtel
 
+
+# Getting started
+
 To get started with (3), please refer to:
 
 * [Getting started](Getting_started.md)
 
 and install the software on your personal computer.
+
+Here are some courses to get you up to speed with the basics of using spreadsheets (tabular data), visualizations, and R/RStudio:
+
+* TODO insert DataCamp URLs
+
+Any introduction to R should explain how to install and load R libraries. Once you have the software R and the RStudio graphical user interface ([GUI](https://en.wikipedia.org/wiki/Graphical_user_interface)) installed, you can begin to explore the functionalities of R!
+
+* https://rmarkdown.rstudio.com/lesson-1.html
+* https://www.datacamp.com/tutorial/r-packages-guide
+
+The basics are:
+
+1. Use the function ``install.packages('your-packages-name')`` to install the R library (aka package) **once**
+2. Each type you create a report (or script) that has code from that R package/library, you have to load it like this: ``library(your-package-name)``
+
+Yes, it is confusing of when you need to use quotes (' ') and when you don't need to. As with any programming language, or "syntax", there are simply some things that are idiosyncratic (imagine the engineers or developers arguing about one way or another to do something). The user simply has to:
+
+1. Remember them
+2. Looks them up (try googling it)
+
+***
+
+Now for an example. If we want to install a package / library, we can use something like this:
+
+```{r}
+#install.packages('knitr')
+```
+
+Here we note we have prepended the line of code with "#", which tells R: do not run this code! Why? Because we don't want to run this line of code everytime we run this file. Install packages once! You can do this by uncommented the code above (remove the "#") and run the code chunk.
+
+Once installed, you can always load the library (aka package) from any script, within RStudeio, etc.
+
+```{r}
+library(knitr)
+```
+
+***
+
+We will be using RMarkdown, which is an authoring framework for data science. It combines R code with R [Markdown](https://en.wikipedia.org/wiki/Markdown), a "language" for creating [formatted text](https://en.wikipedia.org/wiki/Formatted_text), into **the same document**. A [markup language](https://en.wikipedia.org/wiki/Markup_language) species how a document should be formatted and structured. This is different than "What You See Is What You Get" ([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG)) software -- such as Microsoft Word -- that allows the text and structure to be formatted as it should appear.
+
+Why do we take this approach? Because we want to produce **reproducible** research. And one way of doing that is to have the document **and** the code in the same scientific report.
+
+In RMarkdown, the file extension is [.Rmd](https://fileinfo.com/extension/rmd). Together with the `knitr` package (aka library) and RStudio, this report that you're reading "[compiles](https://en.wikipedia.org/wiki/Compilation)" this R Markdown file (.Rmd) file into a [Markdown file](https://fileinfo.com/extension/md) (.md) file that [displays nicely in GitHub](README.md).
+
+You can also compile as PDF. Or as HTML. Or as lots of other files types! And you can do so easily, by changing the header at the top of this file.
+
+
 
 
