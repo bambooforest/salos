@@ -1,6 +1,6 @@
 ---
 title: "Salos 2024 summer school: Working with BivalTyp"
-author: "Steven Moran and Alena Witzlack"
+author: "Steven Moran and Alena Witzlack-Makarevich"
 date: "(`r format(Sys.time(), '%d %B, %Y')`)"
 output:
   github_document:
@@ -253,7 +253,6 @@ Interprete the plot
 # Explore another set of langauges
 
 Select another set of languages and compare the distributions of their valency patterns.
-
 
 
 # `join()` predicate and data tables

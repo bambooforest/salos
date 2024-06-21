@@ -1,6 +1,6 @@
 Salos 2024 summer school: Working with BivalTyp
 ================
-Steven Moran and Alena Witzlack
+Steven Moran and Alena Witzlack-Makarevich
 (21 June, 2024)
 
 - [Introduction](#introduction)
@@ -12,6 +12,7 @@ Steven Moran and Alena Witzlack
 - [`join()` some tables](#join-some-tables)
 - [Work with one language](#work-with-one-language)
 - [Stack some Germanic languages](#stack-some-germanic-languages)
+- [Explore another set of langauges](#explore-another-set-of-langauges)
 - [`join()` predicate and data tables](#join-predicate-and-data-tables)
 
 ------------------------------------------------------------------------
@@ -468,9 +469,24 @@ option.
 ``` r
 valency %>% filter(language %in% c("English", "German", "Icelandic", "Dutch")) %>% 
       ggplot(aes(x = language, fill = locus)) + 
-  geom_bar()
+      geom_bar()
 ```
 
 ![](BivalTyp_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+Interprete the plot
+
+- Which language is the most diverse in terms of valency patterns
+  (types)?
+
+- Which language is most transitive (with respect to the 130 meanings in
+  the sample)?
+
+- Which language is the least transitive?
+
+# Explore another set of langauges
+
+Select another set of languages and compare the distributions of their
+valency patterns.
 
 # `join()` predicate and data tables
