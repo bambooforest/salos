@@ -7,9 +7,12 @@ Steven Moran and Alena Witzlack
 - [Getting the data](#getting-the-data)
 - [Explore the data](#explore-the-data)
 - [`select` what you need](#select-what-you-need)
-- [On character and factor data
-  types](#on-character-and-factor-data-types)
-- [Join tables](#join-tables)
+- [`mutate()` character into factor](#mutate-character-into-factor)
+- [Get `languages`](#get-languages)
+- [`join()` some tables](#join-some-tables)
+- [Work with one language](#work-with-one-language)
+- [Stack some Germanic languages](#stack-some-germanic-languages)
+- [`join()` predicate and data tables](#join-predicate-and-data-tables)
 
 ------------------------------------------------------------------------
 
@@ -233,7 +236,7 @@ head(valency, n = 3)
     ## 2          60            2 *     *     *     <NA>           
     ## 3          60            3 ABS   MAL   Y     ABS_MAL
 
-# On character and factor data types
+# `mutate()` character into factor
 
 To get a first idea of how much of everything is in the dataset, the
 function `summary()` is quite useful:
@@ -291,7 +294,7 @@ Let’s mutate to factor the variable `X`
 valency <- valency %>% mutate(X = factor(X))
 ```
 
-Compare the now factor `X` to the still character variable `Y`:
+Compare the now factor `X` to the still character variable `Y`.
 
 ``` r
 summary(valency)
@@ -314,49 +317,160 @@ summary(valency)
     ##                                       
     ## 
 
-``` r
-valency %>% mutate(X = factor(X), Y = factor(Y), locus = factor(locus), valency_pattern = factor(valency_pattern))
-```
+Let’s change (mutate) the other character variables into factor and have
+a look at their summary:
 
-    ## # A tibble: 16,770 × 6
-    ##    language_no predicate_no X     Y     locus valency_pattern
-    ##          <dbl>        <dbl> <fct> <fct> <fct> <fct>          
-    ##  1          60            1 IO    ABS   X     IO_ABS         
-    ##  2          60            2 *     *     *     <NA>           
-    ##  3          60            3 ABS   MAL   Y     ABS_MAL        
-    ##  4          60            4 ERG   ABS   TR    TR             
-    ##  5          60            5 BEN   ABS   X     BEN_ABS        
-    ##  6          60            6 ABS   IO    Y     ABS_IO         
-    ##  7          60            7 ERG   BEN   Y     ERG_BEN        
-    ##  8          60            8 ERG   ABS   TR    TR             
-    ##  9          60            9 ERG   ABS   TR    TR             
-    ## 10          60           10 *     *     *     <NA>           
-    ## # ℹ 16,760 more rows
+``` r
+valency <- valency %>% mutate(Y = factor(Y), locus = factor(locus), valency_pattern = factor(valency_pattern))
+```
 
 ``` r
 summary(valency)
 ```
 
-    ##   language_no   predicate_no         X             Y            
-    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   Length:16770      
-    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   Class :character  
-    ##  Median : 65   Median : 65.5   ERG    :1877   Mode  :character  
-    ##  Mean   : 65   Mean   : 65.5   *      :1397                     
-    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794                     
-    ##  Max.   :129   Max.   :130.0   ABS    : 486                     
-    ##                                (Other):1089                     
-    ##     locus           valency_pattern   
-    ##  Length:16770       Length:16770      
-    ##  Class :character   Class :character  
-    ##  Mode  :character   Mode  :character  
-    ##                                       
-    ##                                       
-    ##                                       
-    ## 
+    ##   language_no   predicate_no         X              Y        locus    
+    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   ACC    :2766   * :1397  
+    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   DO     :1807   TR:7082  
+    ##  Median : 65   Median : 65.5   ERG    :1877   NOM    :1725   X :1298  
+    ##  Mean   : 65   Mean   : 65.5   *      :1397   *      :1397   XY: 344  
+    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794   DAT    :1075   Y :6649  
+    ##  Max.   :129   Max.   :130.0   ABS    : 486   ABS    : 823            
+    ##                                (Other):1089   (Other):7177            
+    ##  valency_pattern
+    ##  TR     :7080   
+    ##  NOM_DAT: 755   
+    ##  DAT_NOM: 540   
+    ##  NOM_INS: 270   
+    ##  NOM_ABL: 265   
+    ##  (Other):6463   
+    ##  NA's   :1397
 
-At this stage you probably realize that we have no idea what languages
-and what predicates you are dealing with in this table. These details
-are part of two separate datasets and before we embark on any serios
-exploration, we need to join these datasets.
+It’s getting more interesting, but at this stage you probably realize
+that we have no idea what languages and what predicates you are dealing
+with in this table. These details are part of two separate datasets and
+before we embark on any serious exploration, we need to join these
+datasets.
 
-# Join tables
+# Get `languages`
+
+The only information on languages in our `valency` is some kind of ID
+under `language_no`, but what is language number `1`?
+
+Let’s get the dataset with the detail on languages. We use the same
+function to read the dataset and process it a bit following the same
+procedure as above:
+
+What do we get?
+
+``` r
+head(languages)
+```
+
+    ## # A tibble: 6 × 23
+    ##   language_no language_ru     language language_external expert_ru consultant_ru
+    ##         <dbl> <chr>           <chr>    <chr>             <chr>     <chr>        
+    ## 1           1 русский         Russian  Russian           Сергей С… <NA>         
+    ## 2           2 арабский литер… Arabic_… Standard Arabic   Рамазан … <NA>         
+    ## 3           3 гуарани         Guarani… Paraguayan Guara… Дмитрий … <NA>         
+    ## 4           4 эстонский       Estonian Estonian          Мерит Ни… <NA>         
+    ## 5           5 цахурский       Tsakhur  Tsakhur           Жиль Отье Ахмед Давудов
+    ## 6           6 тувинский       Tuvinian Tuvinian          Софья Ал… <NA>         
+    ## # ℹ 17 more variables: expert <chr>, consultant <chr>,
+    ## #   data_collection_year <chr>, initial_release_date <chr>,
+    ## #   last_release_date <chr>, macroarea <chr>, `family (WALS)` <chr>,
+    ## #   `genus (WALS)` <chr>, latitude <dbl>, longitude <dbl>,
+    ## #   number_nominal_cases <dbl>, source_of_information <chr>,
+    ## #   contact_language <chr>, glottocode <chr>, comment_on_glottocode <chr>,
+    ## #   WO_WALS <chr>, WO_comment <chr>
+
+There is definitely too much stuff here we are unlikely to use, let’s
+`select()` only some variables:
+
+``` r
+languages <- languages %>% select(language_no, language, macroarea, glottocode, latitude, longitude)
+```
+
+# `join()` some tables
+
+We want to join our two data frames `languages` and `valency`. They
+share one variable `language_no`, which we will use to perform the join.
+
+There are various options for joining data frames. The choice matters
+when the data frames do not have overlapping set. This is not the case
+in our data set, so the various functions will yiled the same result.
+But in case you are curious:
+
+- a `left_join()` keeps all observations in data frames x,
+
+- a `right_join()` keeps all observations in data frames,
+
+- a `full_join()` keeps all observations in x and y.
+
+Let’s take `left_join()` and check our enhanced data frame:
+
+``` r
+valency <- left_join(languages, valency, by = "language_no")
+head(valency)
+```
+
+    ## # A tibble: 6 × 11
+    ##   language_no language macroarea glottocode latitude longitude predicate_no
+    ##         <dbl> <chr>    <chr>     <chr>         <dbl>     <dbl>        <dbl>
+    ## 1           1 Russian  Europe    russ1263         56        38            1
+    ## 2           1 Russian  Europe    russ1263         56        38            2
+    ## 3           1 Russian  Europe    russ1263         56        38            3
+    ## 4           1 Russian  Europe    russ1263         56        38            4
+    ## 5           1 Russian  Europe    russ1263         56        38            5
+    ## 6           1 Russian  Europe    russ1263         56        38            6
+    ## # ℹ 4 more variables: X <fct>, Y <fct>, locus <fct>, valency_pattern <fct>
+
+Now that we have some idea about the langauges in our dataset, we can
+explore them a bit further.
+
+# Work with one language
+
+Let’s look at some valency details for a langauge or two. `filter()`
+allows you to access only those data which fullfil the specified
+conditions (e.g. `==` means it has to exactly matching `"English"`)
+
+``` r
+valency %>% filter(language == "English") %>% count(locus)
+```
+
+    ## # A tibble: 3 × 2
+    ##   locus     n
+    ##   <fct> <int>
+    ## 1 *         3
+    ## 2 TR       81
+    ## 3 Y        46
+
+Is English any different form German?
+
+``` r
+valency %>% filter(language == "German") %>% count(locus)
+```
+
+    ## # A tibble: 4 × 2
+    ##   locus     n
+    ##   <fct> <int>
+    ## 1 *         1
+    ## 2 TR       71
+    ## 3 X         5
+    ## 4 Y        53
+
+It is! What about some other Germanic langauges?
+
+# Stack some Germanic languages
+
+Here, a picture (a plot) might do a better job. Stacked barplots is one
+option.
+
+``` r
+valency %>% filter(language %in% c("English", "German", "Icelandic", "Dutch")) %>% 
+      ggplot(aes(x = language, fill = locus)) + 
+  geom_bar()
+```
+
+![](BivalTyp_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+# `join()` predicate and data tables
