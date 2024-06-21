@@ -7,6 +7,9 @@ Steven Moran and Alena Witzlack
 - [Getting the data](#getting-the-data)
 - [Explore the data](#explore-the-data)
 - [`select` what you need](#select-what-you-need)
+- [On character and factor data
+  types](#on-character-and-factor-data-types)
+- [Join tables](#join-tables)
 
 ------------------------------------------------------------------------
 
@@ -215,7 +218,7 @@ valency <- valency  %>% select(language_no, predicate_no, X, Y, locus, valency_p
 ```
 
 It’s a good idea to check with the familiar functions whether you got
-what you wanted. Notice an optional argument `n = 3` added tot he
+what you wanted. Notice an optional argument `n = 3` added to the
 function `head()`. What does it do? Verify your intuition by changing
 the value to e.g. `n = 5`.
 
@@ -230,6 +233,130 @@ head(valency, n = 3)
     ## 2          60            2 *     *     *     <NA>           
     ## 3          60            3 ABS   MAL   Y     ABS_MAL
 
-At this stage we realize that we have no idea what languages and what
-predicates are we dealing with in this table. These details are part of
-two separate datasets \# Join tables
+# On character and factor data types
+
+To get a first idea of how much of everything is in the dataset, the
+function `summary()` is quite useful:
+
+``` r
+summary(valency)
+```
+
+    ##   language_no   predicate_no        X                  Y            
+    ##  Min.   :  1   Min.   :  1.0   Length:16770       Length:16770      
+    ##  1st Qu.: 33   1st Qu.: 33.0   Class :character   Class :character  
+    ##  Median : 65   Median : 65.5   Mode  :character   Mode  :character  
+    ##  Mean   : 65   Mean   : 65.5                                        
+    ##  3rd Qu.: 97   3rd Qu.: 98.0                                        
+    ##  Max.   :129   Max.   :130.0                                        
+    ##     locus           valency_pattern   
+    ##  Length:16770       Length:16770      
+    ##  Class :character   Class :character  
+    ##  Mode  :character   Mode  :character  
+    ##                                       
+    ##                                       
+    ## 
+
+As it turns out, `summary()` on character data (our `X`, `Y`, `locus`,
+and `valency_pattern`) does not yield much of use. Why is this the case?
+
+In R, there is an important distinction between the two data types for
+storing textual data (i.e. data with words): character and factor.
+
+We use **character** for textual data which do not represent
+categories/classes, e.g. example sentences and their glosses in the
+original large valency dataset. Textual data which represent classes or
+categories should be stored as **factors** in R and not as character
+data type.
+
+For instance, in a patients dataset, patient names would be stored as
+characters, as we don’t really care how many `John`’s and `Rose`’s are
+there and whether they are more frequent than `Lee`’s and `Monica`’s. On
+the other hand, `male` and `female` are categories from a list which
+includes these and other possibilities which we would like to be able to
+count for statistical analysis, for this reason we treat them as factors
+in R.
+
+Different functions to import data into R have different default
+specifications: some generously treat all words as factors, others
+conservatively treat all words as characters. What does the function
+`read_tsv()` (or `read_csv()`) do? It assume that all words are
+character and then it is up to you to declare which ones should be
+factors. Let’s declare that `X`, `Y`, `locus`, and `valency_pattern` are
+actually factors:
+
+Let’s mutate to factor the variable `X`
+
+``` r
+valency <- valency %>% mutate(X = factor(X))
+```
+
+Compare the now factor `X` to the still character variable `Y`:
+
+``` r
+summary(valency)
+```
+
+    ##   language_no   predicate_no         X             Y            
+    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   Length:16770      
+    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   Class :character  
+    ##  Median : 65   Median : 65.5   ERG    :1877   Mode  :character  
+    ##  Mean   : 65   Mean   : 65.5   *      :1397                     
+    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794                     
+    ##  Max.   :129   Max.   :130.0   ABS    : 486                     
+    ##                                (Other):1089                     
+    ##     locus           valency_pattern   
+    ##  Length:16770       Length:16770      
+    ##  Class :character   Class :character  
+    ##  Mode  :character   Mode  :character  
+    ##                                       
+    ##                                       
+    ##                                       
+    ## 
+
+``` r
+valency %>% mutate(X = factor(X), Y = factor(Y), locus = factor(locus), valency_pattern = factor(valency_pattern))
+```
+
+    ## # A tibble: 16,770 × 6
+    ##    language_no predicate_no X     Y     locus valency_pattern
+    ##          <dbl>        <dbl> <fct> <fct> <fct> <fct>          
+    ##  1          60            1 IO    ABS   X     IO_ABS         
+    ##  2          60            2 *     *     *     <NA>           
+    ##  3          60            3 ABS   MAL   Y     ABS_MAL        
+    ##  4          60            4 ERG   ABS   TR    TR             
+    ##  5          60            5 BEN   ABS   X     BEN_ABS        
+    ##  6          60            6 ABS   IO    Y     ABS_IO         
+    ##  7          60            7 ERG   BEN   Y     ERG_BEN        
+    ##  8          60            8 ERG   ABS   TR    TR             
+    ##  9          60            9 ERG   ABS   TR    TR             
+    ## 10          60           10 *     *     *     <NA>           
+    ## # ℹ 16,760 more rows
+
+``` r
+summary(valency)
+```
+
+    ##   language_no   predicate_no         X             Y            
+    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   Length:16770      
+    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   Class :character  
+    ##  Median : 65   Median : 65.5   ERG    :1877   Mode  :character  
+    ##  Mean   : 65   Mean   : 65.5   *      :1397                     
+    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794                     
+    ##  Max.   :129   Max.   :130.0   ABS    : 486                     
+    ##                                (Other):1089                     
+    ##     locus           valency_pattern   
+    ##  Length:16770       Length:16770      
+    ##  Class :character   Class :character  
+    ##  Mode  :character   Mode  :character  
+    ##                                       
+    ##                                       
+    ##                                       
+    ## 
+
+At this stage you probably realize that we have no idea what languages
+and what predicates you are dealing with in this table. These details
+are part of two separate datasets and before we embark on any serios
+exploration, we need to join these datasets.
+
+# Join tables
