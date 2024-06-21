@@ -11,13 +11,21 @@ output:
 
 ```{r, message=FALSE}
 library(tidyverse)
+library(readxl)
+library(readr)
+require(forcats)
+library(cowplot)
+library(knitr)
+library(kableExtra)
 ```
 
 # Introduction
 
 From the [BivalTyp website](https://www.bivaltyp.info):
 
->>> BivalTyp is a typological database of bivalent verbs and their encoding frames. As of 2024, the database presents data for 129 languages, mainly spoken in Northern Eurasia. The database is based on a questionnaire containing 130 predicates given in context. Language-particular encoding frames are identified based on the devices (such as cases, adpositions, and verbal indices) involved in encoding two predefined arguments of each predicate (e.g. ‘Peter’ and ‘the dog’ in ‘Peter is afraid of the dog’). In each language, one class of verbs is identified as transitive. The goal of the project is to explore the ways in which bivalent verbs can be split between the transitive and different intransitive valency classes.
+> BivalTyp is a typological database of bivalent verbs and their encoding frames. As of 2024, the database presents data for 129 languages, mainly spoken in Northern Eurasia. The database is based on a questionnaire containing 130 predicates given in context. Language-particular encoding frames are identified based on the devices (such as cases, adpositions, and verbal indices) involved in encoding two predefined arguments of each predicate (e.g. ‘Peter’ and ‘the dog’ in ‘Peter is afraid of the dog’). In each language, one class of verbs is identified as transitive. The goal of the project is to explore the ways in which bivalent verbs can be split between the transitive and different intransitive valency classes.
+
+# Getting the data
 
 The data from BivalTyp are available in a GitHub repository created and maintained by [
 Dmitry Nikolayev](https://dnikolaev.com):
@@ -49,31 +57,77 @@ But then you need to make sure that they are:
 1. Either in the same folder as the Rmd file you are working on (which means you've set the working directory to where you Rmd file is):
 
 ```{r, message=FALSE}
-df <- read_tsv('data_for_download.csv')
+valency <- read_tsv('data_for_download.csv')
 ```
 
 2. You load the file from the working directory to where the data file is, e.g.:
 
 ```{r, message=FALSE}
-df <- read_tsv('data/data_for_download.csv')
+valency <- read_tsv('data/data_for_download.csv')
 ```
 
 3. If the data are available online, e.g., in a GitHub repository (or elsewhere), you can load the data directly into R/RStudio with the ``url()`` function and a URL:
 
 ```{r, message=FALSE}
-df <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/data_for_download.csv'))
+valency <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/data_for_download.csv'))
 ```
 
 But be careful -- it has to be the URL to the **raw data**, not the webpage! Click on the "Raw" button in GitHub to get the URL in the browswer window.
 
 ![Open RStudio.](figures/raw.png)
-
-Another issue to remember -- although the file is labeled CSV for "comma separated values", the actual file is separated by tabs. Linguists often use TSV (i.e., tab separted values) for display purposes.
+Another issue to remember -- although the file is labeled CSV for "comma separated values", the actual file is separated by tabs. Linguists often use TSV (i.e., tab separated values) for display purposes.
 
 In R/RStudio you can specify the [delimiter](https://en.wikipedia.org/wiki/Delimiter), e.g., that it is tab instead of comma. Comma is the default standard, but in the wild you will come across many different characters as delimiters.
+
+Finally, notice, the file we started with is called `data_for_download.csv`. This is which is not a very informative label for an R object. We pick a more telling name, e.g. `valency`.
 
 ***
 
 # Explore the data
+
+Every time you read in a data set, it's a good idea to have a look at it from a few angles to make sure that there are no major issues with both the import and the data themselves before you move on to doing some real statistics.
+
+Let's start by looking at the variables with the function `str()` (it stands for "structure"):
+
+```{r, message = FALSE}
+str(valency)
+```
+
+Another way to get some sense of the data is to use the function `head()`:
+
+```{r, message = FALSE}
+head(valency)
+```
+
+
+Could you guess what the "sibling" function `tail()` does?
+
+Interpret the output of `str()` and `head()`:
+
+- How many variables are in the dataset?
+
+- Variables of which type are these?
+
+- How many rows does it contain?
+
+- Which variables are you likely to use for statistical analysis and which we probably won't need for it? (When a dataset has many variables it might be more convenient to work with a smaller version of it containing just what you need.)
+
+# Select what you need with `select()``
+
+The dataset `valency` contains a lot of textual data (examples and their translations), which won't be used for any statistical analysis. 
+
+Let's use the `tidyverse` function `select` and select only the variables you might need for further analysis: you just list them one after another as arguments of the function  `select()`. 
+
+Here we overwrite the object `valency`. (Do not panic, you always have access to the original dataset in case you need it.)
+
+```{r, message = FALSE}
+valency <- valency  %>% select(language_no, predicate_no, X, Y, locus, valency_pattern)
+```
+
+It's a good idea to check with the familiar functions whether you got what you wanted. Notice an optional argument `n=3` added tot he function `head()`. What does it do? Verify your intuition by changing the value to e.g. `n = 5`.
+
+```{r, message = FALSE}
+head(valency, n = 3)
+```
 
 # Join tables
