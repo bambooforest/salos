@@ -6,9 +6,7 @@ Steven Moran and Alena Witzlack
 - [Introduction](#introduction)
 - [Getting the data](#getting-the-data)
 - [Explore the data](#explore-the-data)
-- [Select what you need with
-  \`select()\`\`](#select-what-you-need-with-select)
-- [Join tables](#join-tables)
+- [`select` what you need](#select-what-you-need)
 
 ------------------------------------------------------------------------
 
@@ -195,11 +193,12 @@ Interpret the output of `str()` and `head()`:
 - How many rows does it contain?
 
 - Which variables are you likely to use for statistical analysis and
-  which we probably won’t need for it? (When a dataset has many
-  variables it might be more convenient to work with a smaller version
-  of it containing just what you need.)
+  which we probably won’t need for it?
 
-# Select what you need with \`select()\`\`
+(When a dataset has many variables it might be more convenient to work
+with a smaller version of it containing just what you need.)
+
+# `select` what you need
 
 The dataset `valency` contains a lot of textual data (examples and their
 translations), which won’t be used for any statistical analysis.
@@ -216,9 +215,9 @@ valency <- valency  %>% select(language_no, predicate_no, X, Y, locus, valency_p
 ```
 
 It’s a good idea to check with the familiar functions whether you got
-what you wanted. Notice an optional argument `n=3` added tot he function
-`head()`. What does it do? Verify your intuition by changing the value
-to e.g. `n = 5`.
+what you wanted. Notice an optional argument `n = 3` added tot he
+function `head()`. What does it do? Verify your intuition by changing
+the value to e.g. `n = 5`.
 
 ``` r
 head(valency, n = 3)
@@ -231,4 +230,6 @@ head(valency, n = 3)
     ## 2          60            2 *     *     *     <NA>           
     ## 3          60            3 ABS   MAL   Y     ABS_MAL
 
-# Join tables
+At this stage we realize that we have no idea what languages and what
+predicates are we dealing with in this table. These details are part of
+two separate datasets \# Join tables
