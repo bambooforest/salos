@@ -110,9 +110,11 @@ Interpret the output of `str()` and `head()`:
 
 - How many rows does it contain?
 
-- Which variables are you likely to use for statistical analysis and which we probably won't need for it? (When a dataset has many variables it might be more convenient to work with a smaller version of it containing just what you need.)
+- Which variables are you likely to use for statistical analysis and which we probably won't need for it? 
 
-# Select what you need with `select()``
+(When a dataset has many variables it might be more convenient to work with a smaller version of it containing just what you need.)
+
+# `select` what you need
 
 The dataset `valency` contains a lot of textual data (examples and their translations), which won't be used for any statistical analysis. 
 
@@ -124,10 +126,11 @@ Here we overwrite the object `valency`. (Do not panic, you always have access to
 valency <- valency  %>% select(language_no, predicate_no, X, Y, locus, valency_pattern)
 ```
 
-It's a good idea to check with the familiar functions whether you got what you wanted. Notice an optional argument `n=3` added tot he function `head()`. What does it do? Verify your intuition by changing the value to e.g. `n = 5`.
+It's a good idea to check with the familiar functions whether you got what you wanted. Notice an optional argument `n = 3` added tot he function `head()`. What does it do? Verify your intuition by changing the value to e.g. `n = 5`.
 
 ```{r, message = FALSE}
 head(valency, n = 3)
 ```
 
+At this stage we realize that we have no idea what languages and what predicates are we dealing with in this table. These details are part of two separate datasets 
 # Join tables
