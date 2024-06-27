@@ -223,7 +223,6 @@ Let's look at some valency details for a langauge or two. `filter()` allows you 
 valency %>% filter(language == "English") %>% count(locus)
 ```
 
-
 Is English any different form German?
 
 ```{r, message = FALSE}
