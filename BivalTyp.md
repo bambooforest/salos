@@ -1,7 +1,7 @@
 Salos 2024 summer school: Working with BivalTyp
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(21 June, 2024)
+(27 June, 2024)
 
 - [Introduction](#introduction)
 - [Getting the data](#getting-the-data)
@@ -133,22 +133,22 @@ stands for “structure”):
 str(valency)
 ```
 
-    ## spc_tbl_ [16,770 × 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-    ##  $ language_no                  : num [1:16770] 60 60 60 60 60 60 60 60 60 60 ...
-    ##  $ predicate_no                 : num [1:16770] 1 2 3 4 5 6 7 8 9 10 ...
-    ##  $ verb                         : chr [1:16770] "χ’ə" "*" "[ĉ-]ŝa" "w-š’tə" ...
-    ##  $ X                            : chr [1:16770] "IO" "*" "ABS" "ERG" ...
-    ##  $ Y                            : chr [1:16770] "ABS" "*" "MAL" "ABS" ...
-    ##  $ locus                        : chr [1:16770] "X" "*" "Y" "TR" ...
-    ##  $ valency_pattern              : chr [1:16770] "IO_ABS" NA "ABS_MAL" "TR" ...
-    ##  $ sentence                     : chr [1:16770] "á-č̣’ḳʷən j-qá jə́-χ’-əj-ṭ" "*" "á-č̣’ḳʷən a-lá d-a-ĉ-ŝ-ə́j-ṭ" "á-č̣’ḳʷən-ĉa-kʷa a-háqʷ-kʷa j-á-wə-r-š’t-əj-ṭ" ...
-    ##  $ glosses_en                   : chr [1:16770] "DEF-boy 3SG.M.IO-head 3SG.M.IO-ache-PRS-DCL" "*" "DEF-boy DEF-dog 3SG.H.ABS-3SG.N.IO-MAL-be_afraid-PRS-DCL" "DEF-boy-PL.H-PL DEF-stone-PL 3PL.ABS-3N.IO-LOC-3PL.ERG-throw-PRS-DCL" ...
-    ##  $ back_translation_en          : chr [1:16770] "‘The boy has a headache.’" "*" "‘The boy is afraid of the dog.’" "‘The boys are throwing the stones.’" ...
-    ##  $ comms                        : chr [1:16770] NA "No satisfactory translation has been obtained." NA NA ...
-    ##  $ glosses_ru                   : chr [1:16770] "DEF-парень 3SG.M.IO-голова 3SG.M.IO-болеть-PRS-DCL" "*" "DEF-парень DEF-собака 3SG.H.ABS-3SG.N.IO-MAL-бояться-PRS-DCL" "DEF-парень-PL.H-PL DEF-камень-PL 3PL.ABS-3N.IO-LOC-3PL.ERG-бросить-PRS-DCL" ...
-    ##  $ back_translation_ru          : chr [1:16770] "‘У парня болит голова.’" "*" "‘Парень боится собаки.’" "‘Мальчики бросают камни.’" ...
-    ##  $ verb_original_orthography    : chr [1:16770] "хьы" "*" "[чв-]шва" "ау-щты" ...
-    ##  $ sentence_original_orthography: chr [1:16770] "А-чIкIвын й-хъА йЫ-хь-и-тI" "*" "А-чIкIвын а-лА д-а-чв-шв-И-тI" "А-чIкIвын-чва-ква а-хIАхъв-ква й-А-уы-р-щт-и-тI" ...
+    ## spc_tbl_ [17,160 × 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ language_no                  : num [1:17160] 60 60 60 60 60 60 60 60 60 60 ...
+    ##  $ predicate_no                 : num [1:17160] 1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ verb                         : chr [1:17160] "χ’ə" "*" "[ĉ-]ŝa" "w-š’tə" ...
+    ##  $ X                            : chr [1:17160] "IO" "*" "ABS" "ERG" ...
+    ##  $ Y                            : chr [1:17160] "ABS" "*" "MAL" "ABS" ...
+    ##  $ locus                        : chr [1:17160] "X" "*" "Y" "TR" ...
+    ##  $ valency_pattern              : chr [1:17160] "IO_ABS" NA "ABS_MAL" "TR" ...
+    ##  $ sentence                     : chr [1:17160] "á-č̣’ḳʷən j-qá jə́-χ’-əj-ṭ" "*" "á-č̣’ḳʷən a-lá d-a-ĉ-ŝ-ə́j-ṭ" "á-č̣’ḳʷən-ĉa-kʷa a-háqʷ-kʷa j-á-wə-r-š’t-əj-ṭ" ...
+    ##  $ glosses_en                   : chr [1:17160] "DEF-boy 3SG.M.IO-head 3SG.M.IO-ache-PRS-DCL" "*" "DEF-boy DEF-dog 3SG.H.ABS-3SG.N.IO-MAL-be_afraid-PRS-DCL" "DEF-boy-PL.H-PL DEF-stone-PL 3PL.ABS-3N.IO-LOC-3PL.ERG-throw-PRS-DCL" ...
+    ##  $ back_translation_en          : chr [1:17160] "‘The boy has a headache.’" "*" "‘The boy is afraid of the dog.’" "‘The boys are throwing the stones.’" ...
+    ##  $ comms                        : chr [1:17160] NA "No satisfactory translation has been obtained." NA NA ...
+    ##  $ glosses_ru                   : chr [1:17160] "DEF-парень 3SG.M.IO-голова 3SG.M.IO-болеть-PRS-DCL" "*" "DEF-парень DEF-собака 3SG.H.ABS-3SG.N.IO-MAL-бояться-PRS-DCL" "DEF-парень-PL.H-PL DEF-камень-PL 3PL.ABS-3N.IO-LOC-3PL.ERG-бросить-PRS-DCL" ...
+    ##  $ back_translation_ru          : chr [1:17160] "‘У парня болит голова.’" "*" "‘Парень боится собаки.’" "‘Мальчики бросают камни.’" ...
+    ##  $ verb_original_orthography    : chr [1:17160] "хьы" "*" "[чв-]шва" "ау-щты" ...
+    ##  $ sentence_original_orthography: chr [1:17160] "А-чIкIвын й-хъА йЫ-хь-и-тI" "*" "А-чIкIвын а-лА д-а-чв-шв-И-тI" "А-чIкIвын-чва-ква а-хIАхъв-ква й-А-уы-р-щт-и-тI" ...
     ##  - attr(*, "spec")=
     ##   .. cols(
     ##   ..   language_no = col_double(),
@@ -246,15 +246,15 @@ function `summary()` is quite useful:
 summary(valency)
 ```
 
-    ##   language_no   predicate_no        X                  Y            
-    ##  Min.   :  1   Min.   :  1.0   Length:16770       Length:16770      
-    ##  1st Qu.: 33   1st Qu.: 33.0   Class :character   Class :character  
-    ##  Median : 65   Median : 65.5   Mode  :character   Mode  :character  
-    ##  Mean   : 65   Mean   : 65.5                                        
-    ##  3rd Qu.: 97   3rd Qu.: 98.0                                        
-    ##  Max.   :129   Max.   :130.0                                        
+    ##   language_no      predicate_no        X                  Y            
+    ##  Min.   :  1.00   Min.   :  1.0   Length:17160       Length:17160      
+    ##  1st Qu.: 33.75   1st Qu.: 33.0   Class :character   Class :character  
+    ##  Median : 66.50   Median : 65.5   Mode  :character   Mode  :character  
+    ##  Mean   : 66.50   Mean   : 65.5                                        
+    ##  3rd Qu.: 99.25   3rd Qu.: 98.0                                        
+    ##  Max.   :132.00   Max.   :130.0                                        
     ##     locus           valency_pattern   
-    ##  Length:16770       Length:16770      
+    ##  Length:17160       Length:17160      
     ##  Class :character   Class :character  
     ##  Mode  :character   Mode  :character  
     ##                                       
@@ -301,16 +301,16 @@ Compare the now factor `X` to the still character variable `Y`.
 summary(valency)
 ```
 
-    ##   language_no   predicate_no         X             Y            
-    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   Length:16770      
-    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   Class :character  
-    ##  Median : 65   Median : 65.5   ERG    :1877   Mode  :character  
-    ##  Mean   : 65   Mean   : 65.5   *      :1397                     
-    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794                     
-    ##  Max.   :129   Max.   :130.0   ABS    : 486                     
-    ##                                (Other):1089                     
+    ##   language_no      predicate_no         X             Y            
+    ##  Min.   :  1.00   Min.   :  1.0   NOM    :7578   Length:17160      
+    ##  1st Qu.: 33.75   1st Qu.: 33.0   SBJ    :3780   Class :character  
+    ##  Median : 66.50   Median : 65.5   ERG    :1877   Mode  :character  
+    ##  Mean   : 66.50   Mean   : 65.5   *      :1438                     
+    ##  3rd Qu.: 99.25   3rd Qu.: 98.0   DAT    : 794                     
+    ##  Max.   :132.00   Max.   :130.0   ABS    : 486                     
+    ##                                   (Other):1207                     
     ##     locus           valency_pattern   
-    ##  Length:16770       Length:16770      
+    ##  Length:17160       Length:17160      
     ##  Class :character   Class :character  
     ##  Mode  :character   Mode  :character  
     ##                                       
@@ -329,22 +329,22 @@ valency <- valency %>% mutate(Y = factor(Y), locus = factor(locus), valency_patt
 summary(valency)
 ```
 
-    ##   language_no   predicate_no         X              Y        locus    
-    ##  Min.   :  1   Min.   :  1.0   NOM    :7578   ACC    :2766   * :1397  
-    ##  1st Qu.: 33   1st Qu.: 33.0   SBJ    :3549   DO     :1807   TR:7082  
-    ##  Median : 65   Median : 65.5   ERG    :1877   NOM    :1725   X :1298  
-    ##  Mean   : 65   Mean   : 65.5   *      :1397   *      :1397   XY: 344  
-    ##  3rd Qu.: 97   3rd Qu.: 98.0   DAT    : 794   DAT    :1075   Y :6649  
-    ##  Max.   :129   Max.   :130.0   ABS    : 486   ABS    : 823            
-    ##                                (Other):1089   (Other):7177            
+    ##   language_no      predicate_no         X              Y        locus    
+    ##  Min.   :  1.00   Min.   :  1.0   NOM    :7578   ACC    :2766   * :1438  
+    ##  1st Qu.: 33.75   1st Qu.: 33.0   SBJ    :3780   DO     :1937   TR:7307  
+    ##  Median : 66.50   Median : 65.5   ERG    :1877   NOM    :1725   X :1306  
+    ##  Mean   : 66.50   Mean   : 65.5   *      :1438   *      :1438   XY: 349  
+    ##  3rd Qu.: 99.25   3rd Qu.: 98.0   DAT    : 794   DAT    :1075   Y :6760  
+    ##  Max.   :132.00   Max.   :130.0   ABS    : 486   ABS    : 823            
+    ##                                   (Other):1207   (Other):7396            
     ##  valency_pattern
-    ##  TR     :7080   
+    ##  TR     :7305   
     ##  NOM_DAT: 755   
     ##  DAT_NOM: 540   
     ##  NOM_INS: 270   
     ##  NOM_ABL: 265   
-    ##  (Other):6463   
-    ##  NA's   :1397
+    ##  (Other):6587   
+    ##  NA's   :1438
 
 It’s getting more interesting, but at this stage you probably realize
 that we have no idea what languages and what predicates you are dealing
@@ -486,7 +486,7 @@ Interprete the plot
 
 # Explore another set of langauges
 
-Select another set of languages and compare the distributions of their
-valency patterns.
+- Select another set of languages and compare the distributions of their
+  valency patterns.
 
 # `join()` predicate and data tables
