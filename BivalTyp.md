@@ -10,10 +10,14 @@ Steven Moran and Alena Witzlack-Makarevich
 - [`mutate()` character into factor](#mutate-character-into-factor)
 - [Get `languages`](#get-languages)
 - [`join()` some tables](#join-some-tables)
-- [Work with one language](#work-with-one-language)
-- [Stack some Germanic languages](#stack-some-germanic-languages)
-- [Explore another set of langauges](#explore-another-set-of-langauges)
-- [`join()` predicate and data tables](#join-predicate-and-data-tables)
+  - [Work with one language](#work-with-one-language)
+  - [Stack some Germanic languages](#stack-some-germanic-languages)
+  - [Explore another set of
+    languages](#explore-another-set-of-languages)
+- [Getting into `predicates`](#getting-into-predicates)
+  - [What’s in `predicates`?](#whats-in-predicates)
+  - [`join()` `valency` and `predicates` data
+    sets](#join-valency-and-predicates-data-sets)
 
 ------------------------------------------------------------------------
 
@@ -193,7 +197,7 @@ Could you guess what the “sibling” function `tail()` does?
 
 Interpret the output of `str()` and `head()`:
 
-- How many variables are in the dataset?
+- How many variables are in the data set?
 
 - Variables of which type are these?
 
@@ -202,20 +206,20 @@ Interpret the output of `str()` and `head()`:
 - Which variables are you likely to use for statistical analysis and
   which we probably won’t need for it?
 
-(When a dataset has many variables it might be more convenient to work
+(When a data set has many variables it might be more convenient to work
 with a smaller version of it containing just what you need.)
 
 # `select` what you need
 
-The dataset `valency` contains a lot of textual data (examples and their
-translations), which won’t be used for any statistical analysis.
+The data set `valency` contains a lot of textual data (examples and
+their translations), which won’t be used for any statistical analysis.
 
 Let’s use the `tidyverse` function `select` and select only the
 variables you might need for further analysis: you just list them one
 after another as arguments of the function `select()`.
 
 Here we overwrite the object `valency`. (Do not panic, you always have
-access to the original dataset in case you need it.)
+access to the original data set in case you need it.)
 
 ``` r
 valency <- valency  %>% select(language_no, predicate_no, X, Y, locus, valency_pattern)
@@ -239,7 +243,7 @@ head(valency, n = 3)
 
 # `mutate()` character into factor
 
-To get a first idea of how much of everything is in the dataset, the
+To get a first idea of how much of everything is in the data set, the
 function `summary()` is quite useful:
 
 ``` r
@@ -269,11 +273,11 @@ storing textual data (i.e. data with words): character and factor.
 
 We use **character** for textual data which do not represent
 categories/classes, e.g. example sentences and their glosses in the
-original large valency dataset. Textual data which represent classes or
+original large valency data set. Textual data which represent classes or
 categories should be stored as **factors** in R and not as character
 data type.
 
-For instance, in a patients dataset, patient names would be stored as
+For instance, in a patients data set, patient names would be stored as
 characters, as we don’t really care how many `John`’s and `Rose`’s are
 there and whether they are more frequent than `Lee`’s and `Monica`’s. On
 the other hand, `male` and `female` are categories from a list which
@@ -348,17 +352,17 @@ summary(valency)
 
 It’s getting more interesting, but at this stage you probably realize
 that we have no idea what languages and what predicates you are dealing
-with in this table. These details are part of two separate datasets and
-before we embark on any serious exploration, we need to join these
-datasets.
+with in this table. These details are part of two separate data sets and
+before we embark on any serious exploration, we need to join these data
+sets.
 
 # Get `languages`
 
 The only information on languages in our `valency` is some kind of ID
-under `language_no`, but what is language number `1`?
+under `language_no`, but what language number `1` represents?
 
-Let’s get the dataset with the detail on languages. We use the same
-function to read the dataset and process it a bit following the same
+Let’s get the data set with the detail on languages. We use the same
+function to read the data set and process it a bit following the same
 procedure as above:
 
 What do we get?
@@ -425,13 +429,13 @@ head(valency)
     ## 6           1 Russian  Europe    russ1263         56        38            6
     ## # ℹ 4 more variables: X <fct>, Y <fct>, locus <fct>, valency_pattern <fct>
 
-Now that we have some idea about the langauges in our dataset, we can
+Now that we have some idea about the languages in our data set, we can
 explore them a bit further.
 
-# Work with one language
+## Work with one language
 
-Let’s look at some valency details for a langauge or two. `filter()`
-allows you to access only those data which fullfil the specified
+Let’s look at some valency details for a language or two. `filter()`
+allows you to access only those data which fulfill the specified
 conditions (e.g. `==` means it has to exactly matching `"English"`)
 
 ``` r
@@ -459,9 +463,9 @@ valency %>% filter(language == "German") %>% count(locus)
     ## 3 X         5
     ## 4 Y        53
 
-It is! What about some other Germanic langauges?
+It is! What about some other Germanic languages?
 
-# Stack some Germanic languages
+## Stack some Germanic languages
 
 Here, a picture (a plot) might do a better job. Stacked barplots is one
 option.
@@ -474,7 +478,7 @@ valency %>% filter(language %in% c("English", "German", "Icelandic", "Dutch")) %
 
 ![](BivalTyp_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
-Interprete the plot
+Interpret the plot
 
 - Which language is the most diverse in terms of valency patterns
   (types)?
@@ -484,9 +488,84 @@ Interprete the plot
 
 - Which language is the least transitive?
 
-# Explore another set of langauges
+## Explore another set of languages
 
 - Select another set of languages and compare the distributions of their
   valency patterns.
 
-# `join()` predicate and data tables
+------------------------------------------------------------------------
+
+# Getting into `predicates`
+
+## What’s in `predicates`?
+
+The BiValTyp database has another file `predicates.csv` with useful
+details. Let’s have a look at what’s in it!
+
+- First try on your own to read and explore the data set using the
+  familiar functions.
+
+- Which variable can we use to join this data set with `valency`?
+
+- Which variables you are unlikely to use in the data exploration?
+
+- Which variables should be converted to factor?
+
+------------------------------------------------------------------------
+
+This is what we did: we first read the file and check what we get:
+
+``` r
+predicates <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/predicates.csv'))
+str(predicates)
+```
+
+    ## spc_tbl_ [130 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ predicate_no        : num [1:130] 1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ predicate_label_en  : chr [1:130] "feel_pain" "have#illness#" "be_afraid" "throw" ...
+    ##  $ argument_frame_en   : chr [1:130] "X (have) Yache" "X (have) Y" "X (be afraid) of Y" "X (throw) Y" ...
+    ##  $ stimulus_sentence_en: chr [1:130] "[P.]_x has a [head]_yache." "[P.]_x has [the flu]_y." "(P. has to go out of the house, but there is a dog barking in the yard).  [P.]_x is afraid of [the dog]_y." "(Two boys are competing to see who can throw a stone the farthest.) [P.]_x threw [a stone]_y (first)." ...
+    ##  $ predicate_label_ru  : chr [1:130] "болеть#часть тела#" "болеть#болезнью#" "бояться" "бросить" ...
+    ##  $ argument_frame_ru   : chr [1:130] "у X-а (болеть) Y" "X (болеть) Y-ом" "X (бояться) Y-а" "X (бросить) Y(-а)" ...
+    ##  $ stimulus_sentence_ru: chr [1:130] "У [П.]_x болит [голова]_y." "[П.]_x болеет [гриппом]_y." "(П. нужно выйти из дома, но во дворе лает собака). [П.]_x боится [собаки]_y." "(Мальчики соревнуются, кто дальше кинет камень. Сначала) [П.]_x бросил [камень]_y." ...
+    ##  $ present_tense       : chr [1:130] "yes" "yes" "yes" NA ...
+    ##  - attr(*, "spec")=
+    ##   .. cols(
+    ##   ..   predicate_no = col_double(),
+    ##   ..   predicate_label_en = col_character(),
+    ##   ..   argument_frame_en = col_character(),
+    ##   ..   stimulus_sentence_en = col_character(),
+    ##   ..   predicate_label_ru = col_character(),
+    ##   ..   argument_frame_ru = col_character(),
+    ##   ..   stimulus_sentence_ru = col_character(),
+    ##   ..   present_tense = col_character()
+    ##   .. )
+    ##  - attr(*, "problems")=<externalptr>
+
+We decided to keep only the variables `predicate_no`,
+`predicate_label_en`, and `argument_frame_en`.
+
+``` r
+predicates <- predicates  %>% select(predicate_no, predicate_label_en, argument_frame_en)
+```
+
+We convert `predicate_label_en` and `argument_frame_en` into factors:
+
+``` r
+predicates <- predicates %>% mutate(predicate_label_en = factor(predicate_label_en), argument_frame_en = factor(argument_frame_en))
+```
+
+And see what we get:
+
+``` r
+str(predicates$argument_frame_en)
+```
+
+    ##  Factor w/ 126 levels "X (agree) with Y",..: 64 62 5 116 61 101 18 113 103 69 ...
+
+[^1]
+
+## `join()` `valency` and `predicates` data sets
+
+[^1]: There are fewer types of `argument_frame_en` (126) than types in
+    `predicate_label_en` (130). There is an explanation to this.
