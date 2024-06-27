@@ -99,7 +99,6 @@ Another way to get some sense of the data is to use the function `head()`:
 head(valency)
 ```
 
-
 Could you guess what the "sibling" function `tail()` does?
 
 Interpret the output of `str()` and `head()`:
