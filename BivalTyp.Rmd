@@ -252,7 +252,7 @@ Interpret the plot
 
 - Select another set of languages and compare the distributions of their valency patterns.
 
-
+***
 # Getting into `predicates`
 
 ##  What's in `predicates`?
@@ -263,8 +263,36 @@ The BiValTyp database has another file `predicates.csv` with useful details. Let
 
 - Which variable can we use to join this data set with `valency`?
 
+- Which variables you are unlikely to use in the data exploration?
+
+- Which variables should be converted to factor?
+
+***
+This is what we did: we first read the file and check what we get:
+
 ```{r, message = FALSE}
-languages <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/languages.csv'))
+predicates <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp/master/data/predicates.csv'))
+str(predicates)
 ```
+
+We decided to keep only the variables `predicate_no`, `predicate_label_en`, and `argument_frame_en`.
+
+```{r, message = FALSE}
+predicates <- predicates  %>% select(predicate_no, predicate_label_en, argument_frame_en)
+```
+
+We convert `predicate_label_en` and `argument_frame_en` into factors:
+
+```{r, message = FALSE}
+predicates <- predicates %>% mutate(predicate_label_en = factor(predicate_label_en), argument_frame_en = factor(argument_frame_en))
+```
+
+And see what we get:^[There are fewer types of `argument_frame_en` (126) than types in `predicate_label_en` (130). There is an explanation to this.]
+
+
+```{r, message = FALSE}
+str(predicates)
+```
+
 
 ## `join()` `valency` and `predicates` data sets
