@@ -278,7 +278,7 @@ str(predicates)
 We decided to keep only the variables `predicate_no`, `predicate_label_en`, and `argument_frame_en`.
 
 ```{r, message = FALSE}
-predicates <- predicates  %>% select(predicate_no, predicate_label_en, argument_frame_en)
+predicates <- predicates %>% select(predicate_no, predicate_label_en, argument_frame_en)
 ```
 
 We convert `predicate_label_en` and `argument_frame_en` into factors:
