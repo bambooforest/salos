@@ -275,7 +275,8 @@ predicates <- read_tsv(url('https://raw.githubusercontent.com/macleginn/bivaltyp
 str(predicates)
 ```
 
-We decided to keep only the variables `predicate_no`, `predicate_label_en`, and `argument_frame_en`.
+We decided to keep only the variables `predicate_no`, `predicate_label_en`, and `argument_frame_en`, as this is the list of defenitions we'd like to have in our `valency` data set to get some idea what's behind `predicate_no`. 
+
 
 ```{r, message = FALSE}
 predicates <- predicates %>% select(predicate_no, predicate_label_en, argument_frame_en)
@@ -293,6 +294,5 @@ And see what we get:^[There are fewer types of `argument_frame_en` (126) than ty
 ```{r, message = FALSE}
 str(predicates)
 ```
-
 
 ## `join()` `valency` and `predicates` data sets
