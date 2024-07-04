@@ -1,7 +1,7 @@
 Getting started
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(21 June, 2024)
+(28 June, 2024)
 
 - [Getting started](#getting-started)
 - [R](#r)
