@@ -1,7 +1,7 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(21 June, 2024)
+(28 June, 2024)
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
@@ -10,8 +10,8 @@ Steven Moran and Alena Witzlack-Makarevich
 
 # Overview
 
-Here we provide course materials for the Salos 2024 summer school:
-Linguistic data from fieldwork to R:
+Here we provide course materials for the Salos 2024 summer school,
+“Linguistic data from fieldwork to R”:
 
 - <https://www.academiasalensis.org/en/conference-and-summer-school/2024-summer-school/>
 
@@ -66,7 +66,9 @@ simply has to:
 ------------------------------------------------------------------------
 
 Now for an example. If we want to install a package / library, we can
-use something like this:
+use something like this (without the “\#” – this is a special character
+to tell R that this line of code is commented out, i.e., it should not
+be run):
 
 ``` r
 #install.packages('knitr')
