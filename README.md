@@ -5,6 +5,11 @@ Steven Moran and Alena Witzlack-Makarevich
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
+- [RMarkdown](#rmarkdown)
+- [Getting up to speed](#getting-up-to-speed)
+- [Cheat sheets](#cheat-sheets)
+  - [Data visualizations](#data-visualizations)
+  - [Choosing the right statistic](#choosing-the-right-statistic)
 
 ------------------------------------------------------------------------
 
@@ -89,20 +94,19 @@ script, within RStudeio, etc.
 library(knitr)
 ```
 
-------------------------------------------------------------------------
+# RMarkdown
 
 We will be using RMarkdown, which is an authoring framework for data
-science. It combines R code with R
+science.
+
+It combines R code with R
 [Markdown](https://en.wikipedia.org/wiki/Markdown), a “language” for
 creating [formatted text](https://en.wikipedia.org/wiki/Formatted_text),
 into **the same document**.
 
-A [markup language](https://en.wikipedia.org/wiki/Markup_language)
-species how a document should be formatted and structured. This is
-different than “What You See Is What You Get”
-([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG)) software – such as
-Microsoft Word – that allows the text and structure to be formatted as
-it should appear.
+<!--
+A [markup language](https://en.wikipedia.org/wiki/Markup_language) species how a document should be formatted and structured. This is different than "What You See Is What You Get" ([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG)) software -- such as Microsoft Word -- that allows the text and structure to be formatted as it should appear.
+-->
 
 Why do we take this approach? Because we want to produce
 **reproducible** research. And one way of doing that is to have the
@@ -119,3 +123,61 @@ nicely in GitHub](README.md).
 You can also compile as PDF. Or as HTML. Or as lots of other files
 types! And you can do so easily, by changing the header at the top of
 this file.
+
+Here are some RMarkdown cheat sheets:
+
+- <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+- <https://ethz.ch/content/dam/ethz/special-interest/math/statistics/sfs/Education/Advanced%20Studies%20in%20Applied%20Statistics/course-material-1719/Datenanalyse/rmarkdown-2.pdf>
+
+And here is some more explanation on writing scientific reports in
+RMarkdown:
+
+- <https://github.com/bambooforest/APY313/tree/main/2_writing_scientific_reports>
+
+------------------------------------------------------------------------
+
+Let’s look at an example in RStudio.
+
+------------------------------------------------------------------------
+
+# Getting up to speed
+
+Getting up to speed (including the DataCamp exercises) involves
+understanding:
+
+- Table data
+- How to load, access, and manipulate data
+- Data types (in programming / R vs statistics)
+
+Data types are important because they help you decide which data
+visualizations and statistical tests you can use (cheat sheets below).
+
+To get up to speed, please refer to:
+
+- [Getting up to speed](Getting_up_to_speed.md)
+
+# Cheat sheets
+
+## Data visualizations
+
+Here is a cheat sheet for choosing the right visualization:
+
+- <https://www.data-to-viz.com>
+
+And some explanation on which types of plots to use:
+
+- <https://github.com/bambooforest/IntroDataScience/tree/main/6_data_visualization#which-plots-to-use>
+
+## Choosing the right statistic
+
+Here are some cheat sheets on how to choose the right statistical test:
+
+- <https://towardsdatascience.com/statistical-testing-understanding-how-to-select-the-best-test-for-your-data-52141c305168>
+
+- <https://www.scribbr.com/statistics/statistical-tests/>
+
+- <https://dacg.in/2018/11/17/statistical-test-cheat-sheet/>
+
+And more explanation on the process:
+
+- <https://github.com/bambooforest/APY313/tree/main/7_data_modeling>

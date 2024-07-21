@@ -30,6 +30,7 @@ Steven Moran and Alena Witzlack-Makarevich
     variables](#qualitative-versus-quantitative-variables)
 - [Data types in R](#data-types-in-r)
 - [Data structures in R](#data-structures-in-r)
+- [Cheat sheets](#cheat-sheets)
 
 ------------------------------------------------------------------------
 
@@ -609,7 +610,9 @@ Some variables should be converted from the data type
 to
 [factor](https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html).
 
-We will discuss this later.
+In R, a factor is a data type that is used to represent categorical
+data, while a character data type is used to represent text data. We
+discuss these below.
 
 ``` r
 athletes$gender <- as.factor(athletes$gender)
@@ -1943,6 +1946,11 @@ beer_types
 
 Factors become important when we work with categorical variables for
 things like statistical testing.
+
+# Cheat sheets
+
+- [RMarkdown
+  cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
 [^1]: Note we set the `na` parameter of `readr::read_csv` to
     `na=character()` so that the blank cells in the CSV file are not

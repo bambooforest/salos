@@ -101,7 +101,6 @@ There are two basic presentations of tabular data:
 * Long (aka narrow)
 
 
-
 ## Wide
 
 [Wide](https://en.wikipedia.org/wiki/Wide_and_narrow_data) tabular data is unstacked and it is presented so that each different data variable is in a separate column.
@@ -391,7 +390,8 @@ Recall our discussion about [data types for computer programming](https://github
 
 Some variables should be converted from the data type [character](https://stat.ethz.ch/R-manual/R-devel/library/base/html/character.html) to [factor](https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html). 
 
-We will discuss this later.
+
+In R, a factor is a data type that is used to represent categorical data, while a character data type is used to represent text data. We discuss these below.
 
 ```{r}
 athletes$gender <- as.factor(athletes$gender)
@@ -1010,6 +1010,9 @@ beer_types
 Factors become important when we work with categorical variables for things like statistical testing.
 
 
+# Cheat sheets
+
+* [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
 
 
