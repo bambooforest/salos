@@ -1,7 +1,7 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(28 June, 2024)
+(21 July, 2024)
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
@@ -32,10 +32,10 @@ To get started with (3), please refer to:
 
 and install the software on your personal computer.
 
-Here are some courses to get you up to speed with the basics of using
-spreadsheets (tabular data), visualizations, and R/RStudio:
-
-- TODO insert DataCamp URLs
+We have shared with you some courses on
+[DataCamp](https://www.datacamp.com) to get you up to speed with the
+basics of using spreadsheets (tabular data), visualizations, and
+R/RStudio.
 
 Any introduction to R should explain how to install and load R
 libraries. Once you have the software R and the RStudio graphical user
@@ -50,6 +50,7 @@ The basics are:
 
 1.  Use the function `install.packages('your-packages-name')` to install
     the R library (aka package) **once**
+
 2.  Each type you create a report (or script) that has code from that R
     package/library, you have to load it like this:
     `library(your-package-name)`
@@ -61,6 +62,7 @@ developers arguing about one way or another to do something). The user
 simply has to:
 
 1.  Remember them
+
 2.  Looks them up (try googling it)
 
 ------------------------------------------------------------------------
@@ -71,6 +73,7 @@ to tell R that this line of code is commented out, i.e., it should not
 be run):
 
 ``` r
+# Remove the "#" on the next line
 #install.packages('knitr')
 ```
 
@@ -92,10 +95,11 @@ We will be using RMarkdown, which is an authoring framework for data
 science. It combines R code with R
 [Markdown](https://en.wikipedia.org/wiki/Markdown), a “language” for
 creating [formatted text](https://en.wikipedia.org/wiki/Formatted_text),
-into **the same document**. A [markup
-language](https://en.wikipedia.org/wiki/Markup_language) species how a
-document should be formatted and structured. This is different than
-“What You See Is What You Get”
+into **the same document**.
+
+A [markup language](https://en.wikipedia.org/wiki/Markup_language)
+species how a document should be formatted and structured. This is
+different than “What You See Is What You Get”
 ([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG)) software – such as
 Microsoft Word – that allows the text and structure to be formatted as
 it should appear.
