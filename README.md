@@ -46,11 +46,32 @@ We have shared with you some courses on
 basics of using spreadsheets (tabular data), visualizations, and
 R/RStudio.
 
-Any introduction to R should explain how to install and load R
-libraries. Once you have the software R and the RStudio graphical user
-interface
+# R vs RStudio
+
+R is the programming language and RStudio is an “integrated development
+environment”. In other words, it’s an add-on to R, which provides a
+“user friendly” graphical interface to R.
+
+- <https://moderndive.com/1-getting-started.html>
+
+<figure>
+<img src="figures/r_vs_rstudio.png" alt="R vs RStudio." />
+<figcaption aria-hidden="true">R vs RStudio.</figcaption>
+</figure>
+
+The basic layout of RStudio.
+
+<figure>
+<img src="figures/RStudio.png" alt="R vs RStudio." />
+<figcaption aria-hidden="true">R vs RStudio.</figcaption>
+</figure>
+
+Once you have the software R and the RStudio graphical user interface
 ([GUI](https://en.wikipedia.org/wiki/Graphical_user_interface))
 installed, you can begin to explore the functionalities of R!
+
+Any introduction to R should explain how to install and load R
+libraries.
 
 - <https://rmarkdown.rstudio.com/lesson-1.html>
 - <https://www.datacamp.com/tutorial/r-packages-guide>
@@ -85,33 +106,22 @@ be run):
 
 ``` r
 # Remove the "#" on the next line
+#install.packages('tidyverse')
 #install.packages('knitr')
 ```
 
 Here we note we have prepended the line of code with “\#”, which tells
 R: do not run this code! Why? Because we don’t want to run this line of
-code everytime we run this file. Install packages once! You can do this
+code every time we run this file. Install packages once! You can do this
 by uncommented the code above (remove the “\#”) and run the code chunk.
 
 Once installed, you can always load the library (aka package) from any
-script, within RStudeio, etc.
+script, within RStudio, etc.
 
 ``` r
+library(tidyverse)
 library(knitr)
 ```
-
-# R vs RStudio
-
-R is the programming language and RStudio is an “integrated development
-environment”. In other words, it’s an add-on to R, which provides a
-“user friendly” graphical interface to R.
-
-- <https://moderndive.com/1-getting-started.html>
-
-<figure>
-<img src="figures/r_vs_rstudio.png" alt="R vs RStudio." />
-<figcaption aria-hidden="true">R vs RStudio.</figcaption>
-</figure>
 
 # RMarkdown
 
