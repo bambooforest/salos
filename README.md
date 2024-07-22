@@ -103,7 +103,8 @@ library(knitr)
 # R vs RStudio
 
 R is the programming language and RStudio is an “integrated development
-environment”, which provides a nice graphical user interface to R.
+environment”. In other words, it’s an add-on to R, which provides a
+“user friendly” graphical interface to R.
 
 - <https://moderndive.com/1-getting-started.html>
 
