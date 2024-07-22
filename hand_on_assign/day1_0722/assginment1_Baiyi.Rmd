@@ -15,20 +15,20 @@ data <- read_excel("~/Library/CloudStorage/OneDrive-UniversityofHelsinki/interns
  
 # check the headers
 headers <- colnames(data)
-cat("These are the headers in the data frame:", headers)
+cat(paste(headers, collapse = "\n"))
 
 # check out rows and columns
 rows <- nrow(data)
 cols <- ncol(data)
 
-cat("This data frame contains:", rows, "rows")
-cat("This data frame contains:", cols, "columns")
+cat("This data frame contains:", rows, "rows\n")
+cat("This data frame contains:", cols, "columns\n")
 
 # calculate the mean of the age
-cat("The mean of the age is: ", mean(data$Age))
+cat("The mean of the age is: ", mean(data$Age), "\n")
 
 # calculate the mean of vocablulary size of the participants
-cat("The mean of vocablulary size of the participants is:", mean(data$Vocabulary_size))
+cat("The mean of vocablulary size of the participants is:", mean(data$Vocabulary_size), "\n")
 ```
 
 ## Task 2
@@ -58,7 +58,51 @@ ggplot(data, aes(x = Vocabulary_size)) +
 
 • Plot the relationship between the Vocabulary size and C-test scores
 
+```{r}
+data$'C-test'
+```
+
+```{r}
+# because there are two variables that have many points, so here I chose scatter plot
+library(ggplot2)
+library(dplyr)
+
+# Convert to numeric and handle non-numeric values
+#data$Vocabulary_size <- as.numeric(as.character(data$Vocabulary_size))
+#data$`C-test` <- as.numeric(as.character(data$`C-test`))
+
+# plot the variable with its data
+ggplot(data, aes(x = Vocabulary_size, y = 'C-test')) +
+  geom_point(color = "blue", size = 2) +
+  labs(title = "Scatter Plot of Vocabulary Size vs C-test Scores",
+       x = "Vocabulary Size",
+       y = "C-test Scores") +
+  #scale_x_log10() +
+  #scale_y_log10() +
+  theme_minimal() +  # Applying a minimal theme for better aesthetics
+  theme(plot.title = element_text(hjust = 0.5))
+
+# problem: why the dot plot looks like a stright line? Did I make something wrong?
+```
+
 • Plot the distribution of the Language of the participants.
+
+```{r}
+# because the variable is categorical and there's one, so I chose bar plot
+library(ggplot2)
+library(dplyr)
+
+# Plot the bar plot
+ggplot(data, aes(x = Language)) +
+  geom_bar(fill = "skyblue", color = "black") +  # Fill color and border color
+  labs(title = "Bar Plot of Language",
+       x = "Languages",
+       y = "Count") +
+  theme_minimal() +  # Apply a minimal theme for better aesthetics
+  theme(plot.title = element_text(hjust = 0.5))  # Center the plot title
+
+# so the bar chart shows that the languages in use are LT and PL. They are the same to each other.
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
