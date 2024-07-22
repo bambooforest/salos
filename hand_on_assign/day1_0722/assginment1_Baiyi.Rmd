@@ -1,0 +1,65 @@
+---
+title: "assignment1_Baiyi"
+author: "Baiyi_Lian"
+date: "2024-07-22"
+output: html_document
+---
+
+## Task 1
+
+-   Load the data and calculate the means of two variables.
+
+```{r}
+library(readxl)
+data <- read_excel("~/Library/CloudStorage/OneDrive-UniversityofHelsinki/internship_projects_summerschool/Salo Summer School/source_data/hand_on_assign/day1_0722/dataset.questionnaire.xlsx")
+ 
+# check the headers
+headers <- colnames(data)
+cat("These are the headers in the data frame:", headers)
+
+# check out rows and columns
+rows <- nrow(data)
+cols <- ncol(data)
+
+cat("This data frame contains:", rows, "rows")
+cat("This data frame contains:", cols, "columns")
+
+# calculate the mean of the age
+cat("The mean of the age is: ", mean(data$Age))
+
+# calculate the mean of vocablulary size of the participants
+cat("The mean of vocablulary size of the participants is:", mean(data$Vocabulary_size))
+```
+
+## Task 2
+
+• Plot the distribution of the Vocabulary size scores of the participants.
+
+• Change the color of the histogram.
+
+• Add the title to the x-axis and the y-axis.
+
+```{r}
+# because there's only one variable, so I chose histogram
+# load the library
+library(ggplot2)
+library(dplyr)
+
+# plot the variable with its data
+ggplot(data, aes(x = Vocabulary_size)) +
+  geom_histogram(fill = "darkgreen", color = "white") +
+  labs(title = "Vocabulary size scores of the participants",
+       x = "Vocabulary size scores",
+       y = "Frequency") +
+  theme_minimal()
+
+# Here in the histogram,the binwidth is deleted to let R decides what is the best bin size. You could also manipulate with different bin sizes to see the outcome.
+```
+
+• Plot the relationship between the Vocabulary size and C-test scores
+
+• Plot the distribution of the Language of the participants.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
