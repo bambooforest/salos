@@ -1,13 +1,15 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(21 July, 2024)
+(22 July, 2024)
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
+- [R vs RStudio](#r-vs-rstudio)
 - [RMarkdown](#rmarkdown)
 - [Getting up to speed](#getting-up-to-speed)
 - [Cheat sheets](#cheat-sheets)
+  - [RMarkdown](#rmarkdown-1)
   - [Data visualizations](#data-visualizations)
   - [Choosing the right statistic](#choosing-the-right-statistic)
 
@@ -28,6 +30,8 @@ The curriculum has three parts:
     University of Jerusalem
 3.  Quantitative methods. Lecturer: dr. Steven Moran, Université de
     Neuchâtel
+
+This repository provides materials for (3).
 
 # Getting started
 
@@ -60,11 +64,13 @@ The basics are:
     package/library, you have to load it like this:
     `library(your-package-name)`
 
-Yes, it is confusing of when you need to use quotes (’ ’) and when you
-don’t need to. As with any programming language, or “syntax”, there are
-simply some things that are idiosyncratic (imagine the engineers or
-developers arguing about one way or another to do something). The user
-simply has to:
+> > > Yes, it is confusing of when you need to use quotes (’ ’) and when
+> > > you don’t need to. As with any programming language, or “syntax”,
+> > > there are simply some things that are idiosyncratic (imagine the
+> > > engineers or developers arguing about one way or another to do
+> > > something).
+
+The user simply has to:
 
 1.  Remember them
 
@@ -94,6 +100,18 @@ script, within RStudeio, etc.
 library(knitr)
 ```
 
+# R vs RStudio
+
+R is the programming language and RStudio is an “integrated development
+environment”, which provides a nice graphical user interface to R.
+
+- <https://moderndive.com/1-getting-started.html>
+
+<figure>
+<img src="figures/r_vs_rstudio.png" alt="R vs RStudio." />
+<figcaption aria-hidden="true">R vs RStudio.</figcaption>
+</figure>
+
 # RMarkdown
 
 We will be using RMarkdown, which is an authoring framework for data
@@ -103,6 +121,14 @@ It combines R code with R
 [Markdown](https://en.wikipedia.org/wiki/Markdown), a “language” for
 creating [formatted text](https://en.wikipedia.org/wiki/Formatted_text),
 into **the same document**.
+
+Here is an [example](https://r4ds.had.co.nz/r-markdown.html):
+
+<figure>
+<img src="figures/diamond-sizes-report.png"
+alt="R and RMarkdown example." />
+<figcaption aria-hidden="true">R and RMarkdown example.</figcaption>
+</figure>
 
 <!--
 A [markup language](https://en.wikipedia.org/wiki/Markup_language) species how a document should be formatted and structured. This is different than "What You See Is What You Get" ([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG)) software -- such as Microsoft Word -- that allows the text and structure to be formatted as it should appear.
@@ -124,22 +150,6 @@ You can also compile as PDF. Or as HTML. Or as lots of other files
 types! And you can do so easily, by changing the header at the top of
 this file.
 
-Here are some RMarkdown cheat sheets:
-
-- <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
-- <https://ethz.ch/content/dam/ethz/special-interest/math/statistics/sfs/Education/Advanced%20Studies%20in%20Applied%20Statistics/course-material-1719/Datenanalyse/rmarkdown-2.pdf>
-
-And here is some more explanation on writing scientific reports in
-RMarkdown:
-
-- <https://github.com/bambooforest/APY313/tree/main/2_writing_scientific_reports>
-
-------------------------------------------------------------------------
-
-Let’s look at an example in RStudio.
-
-------------------------------------------------------------------------
-
 # Getting up to speed
 
 Getting up to speed (including the DataCamp exercises) involves
@@ -158,13 +168,26 @@ To get up to speed, please refer to:
 
 # Cheat sheets
 
+## RMarkdown
+
+Here are some RMarkdown cheat sheets:
+
+- <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+
+- <https://ethz.ch/content/dam/ethz/special-interest/math/statistics/sfs/Education/Advanced%20Studies%20in%20Applied%20Statistics/course-material-1719/Datenanalyse/rmarkdown-2.pdf>
+
+And here is some more advanced explanation on writing scientific reports
+in RMarkdown:
+
+- <https://github.com/bambooforest/APY313/tree/main/2_writing_scientific_reports>
+
 ## Data visualizations
 
 Here is a cheat sheet for choosing the right visualization:
 
 - <https://www.data-to-viz.com>
 
-And some explanation on which types of plots to use:
+And some more advanced explanation on which types of plots to use:
 
 - <https://github.com/bambooforest/IntroDataScience/tree/main/6_data_visualization#which-plots-to-use>
 
@@ -178,6 +201,6 @@ Here are some cheat sheets on how to choose the right statistical test:
 
 - <https://dacg.in/2018/11/17/statistical-test-cheat-sheet/>
 
-And more explanation on the process:
+And some more advanced explanation on the process:
 
 - <https://github.com/bambooforest/APY313/tree/main/7_data_modeling>
