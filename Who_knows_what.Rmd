@@ -1,0 +1,124 @@
+---
+title: "Salos 2024 summer school: What's the background of the class?"
+author: "Steven Moran"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output:
+  github_document:
+      toc: true
+---
+
+***
+
+These are the R libraries you will need:
+
+```{r, message=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+Load the data.
+
+```{r, message=FALSE}
+df <- read_csv('data/Background questionnaire (Answers) - Risposte del modulo 1.csv')
+```
+
+Have a look.
+
+```{r}
+df
+```
+
+Have a nicer look.
+
+```{r}
+kable(df)
+```
+
+What data types do we have? Each column represents a data type, e.g., numbers or categories.
+
+```{r}
+str(df)
+```
+
+Do you have programming experience?
+
+```{r}
+df$`Do you have any programming (coding) experience?`
+```
+
+How do we tally the counts?
+
+```{r}
+table(df$`Do you have any programming (coding) experience?`)
+```
+
+Let's visualize it.
+
+```{r}
+# Convert the responses to a data frame
+response_df <- as.data.frame(table(df$`Do you have any programming (coding) experience?`))
+
+# Bar plot
+ggplot(response_df, aes(x=Var1, y=Freq, fill=Var1)) +
+  geom_bar(stat="identity") +
+  labs(title="Yes/No Responses", x="Response", y="Count") +
+  scale_fill_manual(values=c("lightblue", "salmon"))
+```
+
+The dreaded pie chart.
+
+```{r}
+ggplot(response_df, aes(x="", y=Freq, fill=Var1)) +
+  geom_bar(width=1, stat="identity") +
+  coord_polar(theta="y") +
+  labs(title="Yes/No Responses") +
+  scale_fill_manual(values=c("lightblue", "salmon"))
+```
+
+If so, please rate your programming knowledge (1-5).
+
+```{r}
+df$`If so, please rate your programming knowledge`
+```
+
+We can look at the distribution. (But the numbers don't add up!)
+
+```{r}
+table(df$`If so, please rate your programming knowledge`)
+```
+
+How many people did not respond ("NA")?
+
+```{r}
+table(df$`If so, please rate your programming knowledge`, exclude=FALSE)
+```
+
+How about a quick summary of the numbers?
+
+```{r}
+summary(df$`If so, please rate your programming knowledge`)
+```
+
+Have you used R?
+
+```{r}
+table(df$`Have you used R?`)
+```
+
+Any R experts (1-5)?
+
+```{r}
+table(df$`If so, please rate your R expertise`, exclude=FALSE)
+```
+
+Let's see if anyone reported that they don't have coding experience, but they have used R. Heh?
+
+```{r}
+df %>% filter(`Do you have any programming (coding) experience?` == "No") %>%
+  filter(`Have you used R?` == "Yes") %>%
+  select(`Do you have any programming (coding) experience?`, 
+              `Have you used R?`)
+```
+
+
+
