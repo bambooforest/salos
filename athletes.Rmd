@@ -1,0 +1,236 @@
+---
+title: "Examples from dplyr with the athletes dataset"
+author: "Steven Moran and Alena Witzlack-Makarevich"
+date: "2024-07-23"
+output: html_document
+---
+
+# Introduction
+
+Let's use the data set `athletes.csv` for an example of working with some of `tidyverse` tools. 
+
+First load the R libraries.
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+# Loading data and having a look
+
+```{r message = FALSE}
+athletes <- read_csv("data/athletes.csv")
+```
+
+Have a look.
+
+```{r}
+head(athletes)
+```
+
+```{r}
+tail(athletes)
+```
+
+Have a look at the structure of the data with `str()`.
+
+```{r}
+str(athletes)
+```
+
+Character variables can converted into "factor" in R, i.e., categorical data.
+
+```{r}
+athletes$gender <- as.factor(athletes$gender)
+athletes$sport <- as.factor(athletes$sport)
+athletes$country <- as.factor(athletes$country)
+```
+
+Now note the change in data type:
+
+```{r}
+str(athletes)
+```
+
+Another useful function is `summary()`:
+
+```{r}
+summary(athletes)
+```
+
+
+# Tidyverse functions for data wrangling
+
+Now some functions so that we can select, filter, transform, extract, and summarize aspects of the data.
+
+## `select()`
+
+```{r}
+select(athletes, name, height, weight)
+```
+
+```{r}
+select(athletes, age:weight)
+```
+
+```{r}
+select(athletes, -birthdate, -age)
+```
+
+These fuctions do not modify the data.
+
+```{r}
+select(athletes, birthdate, age)
+athletes
+```
+
+But you can save the results into a new data frame.
+
+```{r}
+athletes_age <- select(athletes, birthdate, age)
+athletes_age
+```
+
+## `arrange()`
+
+`arrange()` changes the order of the rows.
+
+```{r}
+arrange(athletes, height, age)
+```
+
+```{r}
+arrange(athletes, desc(height), age)
+```
+
+```{r}
+arrange(athletes, gender, desc(age))
+```
+
+
+## `mutate()`
+
+`mutate()` always adds new columns at the end of your data set.
+
+First, create with `select()` a narrow data set `athletes_narrow`.
+
+```{r}
+athletes_narrow <- select(athletes, name, gender, age, sport, height, weight)
+athletes_narrow
+```
+
+Next, add the column BMI (body mass index). The BMI is calculated as the body mass (`weight`) divided by the square of the body `height`. It is universally expressed in units of kg/m^2^. 
+
+```{r}
+mutate(athletes_narrow, BMI = weight/height^2)
+```
+
+Notice that `mutate` does not overwrite the existing data frame.
+
+```{r}
+mutate(athletes_narrow, BMI = weight/height^2)
+athletes_narrow
+```
+
+To add the new column to it permanently, you have to overwrite the original data frame:
+
+```{r}
+athletes_narrow <- mutate(athletes_narrow, BMI = weight/height^2)
+athletes_narrow
+```
+
+
+### `summarize()`
+
+The dplyr function `summarize()` (or `summarise()`) summarizes multiple values in a single value.
+
+```{r, eval = FALSE}
+athletes %>% summarize(totals = sum(gold_medals))
+```
+
+## `group_by()`
+
+Groups table data into groups on which some other operation may operate.
+
+For example, an important function of `summarize()` is in coordination with the `group_by()` function. The dplyr `group_by` function take an existing data frame and performs an operation by group.
+
+We can also use `group_by` on the athletes data. For example, how many gold medals per country?
+
+```{r}
+athletes %>% group_by(country) %>% summarize(gold_medals = sum(gold_medals))
+```
+
+Maybe for viewing purposes it's better to arrange them by number of gold medals instead of alphabetically by country name.
+
+```{r}
+athletes %>% group_by(country) %>% summarize(gold_medals = sum(gold_medals)) %>% arrange(desc(gold_medals))
+```
+
+```{r}
+athletes %>% 
+  group_by(country) %>% 
+  summarize(gold_medals = sum(gold_medals)) %>% 
+  arrange(desc(gold_medals))
+```
+
+## `filter()`
+
+Probably the most useful `dplyr` function is `filter()`.
+```{r}
+filter(athletes_narrow, height > 2)
+```
+
+```{r}
+filter(athletes_narrow, age == 15)
+```
+
+When you’re starting out with R, the easiest mistake to make is to use = instead of == when testing for equality. When this happens you’ll get an informative error. Try it out:
+
+```{r, eval=FALSE}
+filter(athletes_narrow, age = 15)
+```
+
+
+## Filtering NA
+
+Another important function when filtering is to identify and potentially filter out `NA` cells. These are missing or unknown values in the data set. 
+
+Let's filter the rows in `athletes` that do not have a height value, i.e., they are `NA` in the table.
+
+```{r}
+athletes %>% filter(is.na(height))
+```
+
+You can also filter to **remove** `NA`s, which is often useful for when you want to visualize the data. Use the logical operation `!` mentioned above, i.e., "not".
+
+```{r}
+athletes %>% filter(!is.na(height))
+```
+
+You can also combined the filters. For example, if you want all rows in `athletes` that do not have `NA` values for `height` and `weight`. Notice how the number of rows decreases.
+
+```{r}
+athletes %>% filter(!is.na(height)) %>% filter(!is.na(weight))
+```
+
+If you want to check if there are any `NA`s in a column, you can also use the `any()` function.
+
+```{r}
+any(is.na(athletes$height))
+any(is.na(athletes$age))
+```
+
+
+# The table function
+
+Another useful function is called `table()`. What does it do?
+
+```{r}
+table(athletes$sport)
+```
+
+Note you need to use the `exclude = FALSE` parameter, if you want the `table()` function to count `NA`s. How many athlete
+
+```{r}
+table(athletes$height)
+table(athletes$height, exclude = FALSE)
+```
