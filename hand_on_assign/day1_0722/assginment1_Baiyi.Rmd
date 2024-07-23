@@ -53,6 +53,9 @@ ggplot(data, aes(x = Vocabulary_size)) +
        y = "Frequency") +
   theme_minimal()
 
+
+
+
 # Here in the histogram,the binwidth is deleted to let R decides what is the best bin size. You could also manipulate with different bin sizes to see the outcome.
 ```
 
@@ -60,29 +63,41 @@ ggplot(data, aes(x = Vocabulary_size)) +
 
 ```{r}
 data$'C-test'
+class(data$'C-test')
 ```
 
 ```{r}
+data$Vocabulary_size
+class(data$Vocabulary_size)
+```
+
+```{r}
+
+data$LogVocabulary<-log(data$Vocabulary_size)
+data$c_test <- data$"C-test"
+
 # because there are two variables that have many points, so here I chose scatter plot
 library(ggplot2)
 library(dplyr)
 
 # Convert to numeric and handle non-numeric values
 #data$Vocabulary_size <- as.numeric(as.character(data$Vocabulary_size))
-#data$`C-test` <- as.numeric(as.character(data$`C-test`))
+#data$"C-test" <- as.numeric(data$"C-test")
+
+# Remove rows with NA values (introduced by non-numeric conversion)
+#data <- data %>% filter(!is.na(Vocabulary_size) & !is.na(`C-test`))
 
 # plot the variable with its data
-ggplot(data, aes(x = Vocabulary_size, y = 'C-test')) +
+ggplot(data, aes(x = LogVocabulary, y = c_test)) +
   geom_point(color = "blue", size = 2) +
   labs(title = "Scatter Plot of Vocabulary Size vs C-test Scores",
        x = "Vocabulary Size",
        y = "C-test Scores") +
-  #scale_x_log10() +
-  #scale_y_log10() +
   theme_minimal() +  # Applying a minimal theme for better aesthetics
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = TRUE, size = 1)
 
-# problem: why the dot plot looks like a stright line? Did I make something wrong?
+# problem: why the c_test remain the same? the reason is name of the variable, try to rename the variable when the figures of that variable are not changed.
 ```
 
 • Plot the distribution of the Language of the participants.
@@ -94,7 +109,7 @@ library(dplyr)
 
 # Plot the bar plot
 ggplot(data, aes(x = Language)) +
-  geom_bar(fill = "skyblue", color = "black") +  # Fill color and border color
+  geom_bar(fill = "skyblue", color ="black") +  # Fill color and border color
   labs(title = "Bar Plot of Language",
        x = "Languages",
        y = "Count") +
