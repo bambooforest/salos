@@ -1,11 +1,12 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(22 July, 2024)
+(23 July, 2024)
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
 - [R vs RStudio](#r-vs-rstudio)
+- [R vs R packages (aka libraries)](#r-vs-r-packages-aka-libraries)
 - [RMarkdown](#rmarkdown)
 - [Getting up to speed](#getting-up-to-speed)
 - [Cheat sheets](#cheat-sheets)
@@ -39,7 +40,8 @@ To get started with (3), please refer to:
 
 - [Getting started](Getting_started.md)
 
-and install the software on your personal computer.
+and install the software (R, RStudio, spreadsheet application) on your
+personal computer.
 
 We have shared with you some courses on
 [DataCamp](https://www.datacamp.com) to get you up to speed with the
@@ -70,6 +72,36 @@ Once you have the software R and the RStudio graphical user interface
 ([GUI](https://en.wikipedia.org/wiki/Graphical_user_interface))
 installed, you can begin to explore the functionalities of R!
 
+# R vs R packages (aka libraries)
+
+So-called “Base R” contains the “core packages” or the R programming.
+These include for example:
+
+- Using R as a calculator
+- Using basic core fuctions like `read.csv()`, `summary()`, `table()`,
+  `head()`
+
+There are many more functions available from “CRAN” – the [Comprehensive
+R Archive Network](https://cran.r-project.org).
+
+Here is a
+[visualization](http://faculty.washington.edu/kenrice/rintro/sess08.pdf)
+of core R vs R packages:
+
+<figure>
+<img src="figures/r_core_vs_packages.png" alt="R vs RStudio." />
+<figcaption aria-hidden="true">R vs RStudio.</figcaption>
+</figure>
+
+Why do the packages not in Core R need to be installed (once)
+individually and separately?
+
+**Because there are over **23,000\*\* packages in R.\*\*
+
+You don’t want all that on your computer!!!
+
+------------------------------------------------------------------------
+
 Any introduction to R should explain how to install and load R
 libraries.
 
@@ -91,11 +123,12 @@ The basics are:
 > > > engineers or developers arguing about one way or another to do
 > > > something).
 
-The user simply has to:
+For any programming language idiosyncrasies, the user simply has to
+either:
 
-1.  Remember them
+1.  Remember them.
 
-2.  Looks them up (try googling it)
+2.  Look them up (e.g., try googling it).
 
 ------------------------------------------------------------------------
 
@@ -105,7 +138,6 @@ to tell R that this line of code is commented out, i.e., it should not
 be run):
 
 ``` r
-# Remove the "#" on the next line
 #install.packages('tidyverse')
 #install.packages('knitr')
 ```
