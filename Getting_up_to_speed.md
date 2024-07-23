@@ -1,8 +1,9 @@
 Getting up to speed
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(21 July, 2024)
+(23 July, 2024)
 
+- [Introduction](#introduction)
 - [Table data](#table-data)
 - [Wide vs long table formats](#wide-vs-long-table-formats)
   - [Wide](#wide)
@@ -31,26 +32,42 @@ Steven Moran and Alena Witzlack-Makarevich
 - [Data types in R](#data-types-in-r)
 - [Data structures in R](#data-structures-in-r)
 - [Cheat sheets](#cheat-sheets)
+  - [RMarkdown](#rmarkdown)
+  - [Data visualizations](#data-visualizations)
+  - [Choosing the right statistic](#choosing-the-right-statistic)
 
 ------------------------------------------------------------------------
 
 These are the R libraries you will need for this report:
 
 ``` r
-# install.packages('tidyverse')
-# install.packages('knitr')
 library(tidyverse)
 library(knitr)
 ```
 
-If you have not installed these libraries before, then you need to run
-the `install.packages()` command **once** before you load them above,
-i.e., `install.packages('tidyverse')` in the Console below.
+If you have not installed these libraries before, you can install them
+in RStudio: Click on Tools \> Install Packages.
 
-Or you can use the menu above in RStudio: Click on Tools \> Install
-Packages.
+Or you can run the command `install.packages()` command in the Console
+in RStudio (bottom left by default). For example copy and paste (without
+bullet points):
+
+- install.packages(‘tidyverse’)
+- install.packages(‘knitr’)
 
 ------------------------------------------------------------------------
+
+# Introduction
+
+Topics to get up-to-speed:
+
+- What is data? We use table data!
+- What is “data wrangling” and the “tidyverse”?
+- What are data types?
+
+The materials below are very detailed and meant also as a reference.
+
+At the end, you will find cheat sheets as usual.
 
 # Table data
 
@@ -375,13 +392,42 @@ library(tidyverse)
 
 ## Loading data
 
-There are numerous ways to load data into R. The most common for
-text-based tables are:
+There are numerous ways to load data into R. The most common way is in
+base R, e.g.:
+
+``` r
+phoible <- read.csv("data/phoible.csv")
+```
+
+The `readr` package in the the `tidyverse` library also lets us read in
+plain text data in various formats. The most common for text-based
+tables are:
 
 | Function | Format                         | Filename typically ends with |
 |----------|--------------------------------|------------------------------|
 | read_csv | comma separated values         | csv                          |
 | read_tsv | tab delimited separated values | tsv                          |
+
+Here is an example:
+
+``` r
+phoible <- read_csv('data/phoible.csv')
+```
+
+    ## Rows: 969 Columns: 12
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (3): language, genus, fam
+    ## dbl (9): phonemes, con, son, obs, vow, monoph, qua, ton, population
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+Notice the difference between `read.csv` and `read_csv`. What is it? How
+can you compare the `str()` of the two?
+
+For the latter, do you need to change data types on the character
+columns?
 
 <!--
 &#10;The `readr` is the `tidyverse` library that lets us read in plain text data in various formats:
@@ -396,7 +442,16 @@ text-based tables are:
 &#10;-->
 
 For loading Excel spreadsheets, we can use `tidyverse` with the
-`[readxl](https://readxl.tidyverse.org)` package, e.g.:
+[readxl](https://readxl.tidyverse.org) package.
+
+This means you have to load both R libraries:
+
+``` r
+library(tidyverse)
+library(readxl)
+```
+
+Popular functions for reading Excel data are:
 
 | Function   | Format                 | Filename typically ends with |
 |------------|------------------------|------------------------------|
@@ -518,9 +573,13 @@ or functions for accessing table data
 
 Let’s try them out!
 
-------------------------------------------------------------------------
-
 ## Some examples
+
+Note here is an abbreviated and less detailed version of this section:
+
+- \[athletes.md\]
+
+------------------------------------------------------------------------
 
 Let’s use the data set `athletes.csv` for an example of working with
 some of `tidyverse` tools.
@@ -1949,8 +2008,42 @@ things like statistical testing.
 
 # Cheat sheets
 
-- [RMarkdown
-  cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+## RMarkdown
+
+Here are some RMarkdown cheat sheets:
+
+- <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+
+- <https://ethz.ch/content/dam/ethz/special-interest/math/statistics/sfs/Education/Advanced%20Studies%20in%20Applied%20Statistics/course-material-1719/Datenanalyse/rmarkdown-2.pdf>
+
+And here is some more advanced explanation on writing scientific reports
+in RMarkdown:
+
+- <https://github.com/bambooforest/APY313/tree/main/2_writing_scientific_reports>
+
+## Data visualizations
+
+Here is a cheat sheet for choosing the right visualization:
+
+- <https://www.data-to-viz.com>
+
+And some more advanced explanation on which types of plots to use:
+
+- <https://github.com/bambooforest/IntroDataScience/tree/main/6_data_visualization#which-plots-to-use>
+
+## Choosing the right statistic
+
+Here are some cheat sheets on how to choose the right statistical test:
+
+- <https://towardsdatascience.com/statistical-testing-understanding-how-to-select-the-best-test-for-your-data-52141c305168>
+
+- <https://www.scribbr.com/statistics/statistical-tests/>
+
+- <https://dacg.in/2018/11/17/statistical-test-cheat-sheet/>
+
+And some more advanced explanation on the process:
+
+- <https://github.com/bambooforest/APY313/tree/main/7_data_modeling>
 
 [^1]: Note we set the `na` parameter of `readr::read_csv` to
     `na=character()` so that the blank cells in the CSV file are not
