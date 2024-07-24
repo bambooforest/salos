@@ -1,0 +1,256 @@
+---
+title: "Salos 2024 summer school: Exploring PHOIBLE"
+author: "Steven Moran and Alena Witzlack"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output:
+  github_document:
+      toc: true
+---
+
+------------------------------------------------------------------------
+
+These are the R libraries you will need. Add more if you need them.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+# Introduction
+
+The [PHOIBLE database](https://phoible.org) is an online repository of phonological inventory data. From the website one can browse data by various categories, e.g.:
+
+-   [Inventories](https://phoible.org/inventories)
+-   [Languages](https://phoible.org/languages)
+-   [Segments](https://phoible.org/parameters)
+
+# Load the data
+
+First load the data. Use this version of the dataset available in this repository in the [phoible.csv](data/phoible.csv) in the data directory.
+
+```{r}
+# Insert your code below here
+
+library(readr)
+df <- read_csv("~/Library/CloudStorage/OneDrive-UniversityofHelsinki/internship_projects_summerschool/Salo Summer School/source_data/data/phoible.csv")
+```
+
+If you use the `read_csv` function from `tidyverse`, you will want to convert the character data (columns) into categorical ("factor") data in R. You can do this by uncommenting the code (delete the "\#") below and either renaming `df` to whatever you called your dataframe or loading the data with the variable `df` above.
+
+```{r}
+df$language <- as.factor(df$language)
+df$genus <- as.factor(df$genus)
+df$fam <- as.factor(df$fam)
+```
+
+How do we have a quick look at the dataset's structure? How many variables/columns there are? How many rows there are?
+
+```{r}
+# Insert your code below here
+rows <- nrow(df)
+cols <- ncol(df)
+
+cat("There are", rows, "rows in this file\n")
+cat("There are", cols, "columns in this file\n")
+```
+
+How can we have a quick look at the first few rows (the "head") of the data?
+
+```{r}
+# Insert your code below here
+# check the headers
+headers <- colnames(data)
+cat(paste(headers, collapse = "\n"))
+```
+
+How do we get a summary of the contents (i.e., each column) of the data frame?
+
+```{r}
+# Insert your code below here
+summary(df)
+```
+
+# Exploring the data
+
+We can use the `dplyr` functions to explore the data. See the [athletes file](athletes.md) for examples.
+
+-   Select the language, genus, and phoneme count columns.
+
+```{r}
+# Insert your code below here
+genus_phonemes <- select(df, genus, phonemes)
+genus_phonemes
+```
+
+-   Arrange those columns by largest to smallest phoneme inventory size.
+
+```{r}
+# Insert your code below here
+phonemes_from_large <- arrange(df, -phonemes)
+phonemes_from_large
+```
+
+-   Which language has the most consonants?
+
+```{r}
+# Insert your code below here
+max_con <- arrange(df, -con)
+max_con$language[1]
+
+# ktz has the most consonants. 
+# the next line means the languages sorted alphabetically.
+```
+
+-   Filter all languages that have more than 100 consonants.
+
+```{r}
+# Insert your code below here
+filter(df, con > 100)
+
+# no langauges that has consonants more than 100
+```
+
+-   Which language has the least number of vowels?
+
+```{r}
+# Insert your code below here
+min_vow <- arrange(df, vow)
+# you could check the whole data file
+min_vow
+
+#initialize the least number of vowels
+least_vow <- min_vow$vow[1]
+least_vow
+
+# filter the languages that have the same vowels as the one that has least vowel
+filter(min_vow, vow == least_vow)
+
+# cuv and gnd are the languages that have the least number
+```
+
+-   Filter all languages that have less than 3 vowels.
+
+```{r}
+# Insert your code below here
+filter(min_vow, vow < 3)
+
+# the languages are cuv and gnd
+```
+
+-   Which language has the most number of tones?
+
+```{r}
+# Insert your code below here
+# sort the data frame from largest tones
+max_ton <- arrange(df, -ton)
+
+# initialize the biggest one
+most_ton <- max_ton$ton[1]
+
+#filter the other if have the same as the biggest one
+filter(max_ton, ton == most_ton)
+
+# there is only bfd language that has the most tones
+```
+
+-   How many languages do not have tone?
+
+```{r}
+# Insert your code below here
+
+# if ton == 0, update the counter by one
+no_ton_count = 0
+for (tone in max_ton$ton) {
+  if (tone == 0) {
+    no_ton_count <- no_ton_count + 1
+  }
+}
+
+no_ton_count
+
+# another way to calculate is to use filter
+filter(df, ton == 0)
+```
+
+-   How many languages are there in the sample?
+
+```{r}
+# Insert your code below here
+
+un_lan <- length(unique(df$language))
+un_lan
+```
+
+-   How many language families are there in the sample?
+
+```{r}
+# Insert your code below here
+
+un_fam <- length(unique(df$fam))
+un_fam
+```
+
+-   Use the mutate function to determine the average (mean) number of phonemes across all languages in the sample.
+
+```{r}
+# Insert your code below here
+
+mutate(df, mean_pho = mean(phonemes))
+
+# at the last column, you can see there is a new column append to the data frame called mean_pho. Every value in that column is the same.
+```
+
+-   Do the same for consonants, vowels, and tones.
+
+```{r}
+# Insert your code below here
+mutate(df, mean_con = mean(con))
+mutate(df, mean_vow = mean(vow))
+mutate(df, mean_ton = mean(ton))
+
+# another option here is to name the mean columns and append to the data frame respectively so that you can get a new data frame that contains neccessary columns
+```
+
+-   Can you do the same "by group", i.e., by language family?
+
+```{r}
+# Insert your code below here
+family_language_count <- df %>%
+  group_by(fam) %>%
+  summarize(languages = n()) %>%
+  arrange(desc(languages))
+
+# Print the result
+family_language_count
+```
+
+-   How about by language genus? (What's the difference?)
+
+```{r}
+# genus are less than languages, so the I should group the languages to genus
+genus_language_count <- df %>%
+  group_by(genus) %>%
+  summarize(languages = n()) %>%
+  arrange(desc(languages))
+
+# Print the result
+genus_language_count
+
+# the two results are different because the number of families and genuses are different.
+```
+
+-   Are there any NAs in the table?
+
+```{r}
+# Insert your code below here
+# now filter out all the NA in the table to a new assigned table
+no_na_df <- df %>% filter(!is.na(genus))
+# browse the new data frame
+no_na_df
+
+# check if there are still NA in any coloumns
+any(is.na(no_na_df$language))
+any(is.na(no_na_df$genus))
+```
+
+What other questions can you ask of the data with the tools that you've learned about?
