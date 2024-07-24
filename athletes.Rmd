@@ -37,7 +37,7 @@ Have a look at the structure of the data with `str()`.
 str(athletes)
 ```
 
-Character variables can converted into "factor" in R, i.e., categorical data.
+Character variables can converted into "factor" in R, i.e., categorical data. This makes working with them easier for various purposes, e.g., counting categories, doing certain statistics.
 
 ```{r}
 athletes$gender <- as.factor(athletes$gender)
@@ -64,29 +64,60 @@ Now some functions so that we can select, filter, transform, extract, and summar
 
 ## `select()`
 
+When there are two commands they are equivalent, i.e., you can either pass the dataframe as a parameter within the function (bolded):
+
+* select(**athletes**, name, height, weight)
+
+or you can "pipe" ("%>%"), i.e., give, the dataframe to the function:
+
+* **athletes** %>% select(name, height, weight)
+
+Piping allows you to string multiple functions together, e.g.:
+
+* athletes %>% select(name, height, weight) %>% head()
+
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 select(athletes, name, height, weight)
+
+athletes %>% select(name, height, weight)
 ```
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 select(athletes, age:weight)
+
+athletes %>% select(age:weight)
 ```
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 select(athletes, -birthdate, -age)
+
+athletes %>% select(-birthdate, -age)
 ```
 
-These fuctions do not modify the data.
+These functions do not modify the data.
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 select(athletes, birthdate, age)
-athletes
+
+athletes %>% select(birthdate, age)
 ```
 
 But you can save the results into a new data frame.
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 athletes_age <- select(athletes, birthdate, age)
+athletes_age
+
+athletes_age <- athletes %>% select(birthdate, age)
 athletes_age
 ```
 
@@ -95,15 +126,24 @@ athletes_age
 `arrange()` changes the order of the rows.
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 arrange(athletes, height, age)
+
+athletes %>% arrange(height, age)
 ```
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 arrange(athletes, desc(height), age)
+
+athletes %>% arrange(desc(height), age)
 ```
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 arrange(athletes, gender, desc(age))
+
+athletes %>% arrange(gender, desc(age))
 ```
 
 
@@ -114,34 +154,51 @@ arrange(athletes, gender, desc(age))
 First, create with `select()` a narrow data set `athletes_narrow`.
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 athletes_narrow <- select(athletes, name, gender, age, sport, height, weight)
+athletes_narrow
+
+athletes_narrow <- athletes %>% select(name, gender, age, sport, height, weight)
 athletes_narrow
 ```
 
 Next, add the column BMI (body mass index). The BMI is calculated as the body mass (`weight`) divided by the square of the body `height`. It is universally expressed in units of kg/m^2^. 
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
 mutate(athletes_narrow, BMI = weight/height^2)
+
+athletes_narrow %>% mutate(BMI = weight/height^2)
 ```
 
 Notice that `mutate` does not overwrite the existing data frame.
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 mutate(athletes_narrow, BMI = weight/height^2)
+athletes_narrow
+
+athletes_narrow %>% mutate(BMI = weight/height^2)
 athletes_narrow
 ```
 
 To add the new column to it permanently, you have to overwrite the original data frame:
 
 ```{r}
+# These lines are equilvanent, i.e., they are two different ways of doing the same thing.
+
 athletes_narrow <- mutate(athletes_narrow, BMI = weight/height^2)
+athletes_narrow
+
+athletes_narrow <- athletes_narrow %>% mutate(BMI = weight/height^2)
 athletes_narrow
 ```
 
 
 ### `summarize()`
 
-The dplyr function `summarize()` (or `summarise()`) summarizes multiple values in a single value.
+The dplyr function `summarize()` (or `summarise()`) summarizes multiple values in a single value. From now on we simply use the pipe "%>%".
 
 ```{r, eval = FALSE}
 athletes %>% summarize(totals = sum(gold_medals))
@@ -176,11 +233,11 @@ athletes %>%
 
 Probably the most useful `dplyr` function is `filter()`.
 ```{r}
-filter(athletes_narrow, height > 2)
+filter(athletes_narrow, height < 2)
 ```
 
 ```{r}
-filter(athletes_narrow, age == 15)
+filter(athletes_narrow, sport == "Basketball")
 ```
 
 When you’re starting out with R, the easiest mistake to make is to use = instead of == when testing for equality. When this happens you’ll get an informative error. Try it out:
