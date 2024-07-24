@@ -1,7 +1,7 @@
 Salos 2024 summer school: Linguistic data from fieldwork to R
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(23 July, 2024)
+(24 July, 2024)
 
 - [Overview](#overview)
 - [Getting started](#getting-started)
@@ -229,6 +229,8 @@ in RMarkdown:
 Here is a cheat sheet for choosing the right visualization:
 
 - <https://www.data-to-viz.com>
+- <https://datavizcatalogue.com/search.html>
+- <https://datavizproject.com>
 
 And some more advanced explanation on which types of plots to use:
 
