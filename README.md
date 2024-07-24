@@ -228,9 +228,9 @@ in RMarkdown:
 
 Here is a cheat sheet for choosing the right visualization:
 
+- <https://datavizproject.com>
 - <https://www.data-to-viz.com>
 - <https://datavizcatalogue.com/search.html>
-- <https://datavizproject.com>
 
 And some more advanced explanation on which types of plots to use:
 
