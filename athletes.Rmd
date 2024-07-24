@@ -7,7 +7,7 @@ output: html_document
 
 # Introduction
 
-Let's use the data set `athletes.csv` for an example of working with some of `tidyverse` tools. 
+Let's use the data set `athletes.csv` for an example of working with some of `tidyverse` tools.
 
 First load the R libraries.
 
@@ -57,7 +57,6 @@ Another useful function is `summary()`:
 summary(athletes)
 ```
 
-
 # Tidyverse functions for data wrangling
 
 Now some functions so that we can select, filter, transform, extract, and summarize aspects of the data.
@@ -76,7 +75,7 @@ select(athletes, age:weight)
 select(athletes, -birthdate, -age)
 ```
 
-These fuctions do not modify the data.
+These functions do not modify the data.
 
 ```{r}
 select(athletes, birthdate, age)
@@ -106,7 +105,6 @@ arrange(athletes, desc(height), age)
 arrange(athletes, gender, desc(age))
 ```
 
-
 ## `mutate()`
 
 `mutate()` always adds new columns at the end of your data set.
@@ -118,7 +116,7 @@ athletes_narrow <- select(athletes, name, gender, age, sport, height, weight)
 athletes_narrow
 ```
 
-Next, add the column BMI (body mass index). The BMI is calculated as the body mass (`weight`) divided by the square of the body `height`. It is universally expressed in units of kg/m^2^. 
+Next, add the column BMI (body mass index). The BMI is calculated as the body mass (`weight`) divided by the square of the body `height`. It is universally expressed in units of kg/m^2^.
 
 ```{r}
 mutate(athletes_narrow, BMI = weight/height^2)
@@ -137,7 +135,6 @@ To add the new column to it permanently, you have to overwrite the original data
 athletes_narrow <- mutate(athletes_narrow, BMI = weight/height^2)
 athletes_narrow
 ```
-
 
 ### `summarize()`
 
@@ -175,6 +172,7 @@ athletes %>%
 ## `filter()`
 
 Probably the most useful `dplyr` function is `filter()`.
+
 ```{r}
 filter(athletes_narrow, height > 2)
 ```
@@ -189,10 +187,9 @@ When you’re starting out with R, the easiest mistake to make is to use = inste
 filter(athletes_narrow, age = 15)
 ```
 
-
 ## Filtering NA
 
-Another important function when filtering is to identify and potentially filter out `NA` cells. These are missing or unknown values in the data set. 
+Another important function when filtering is to identify and potentially filter out `NA` cells. These are missing or unknown values in the data set.
 
 Let's filter the rows in `athletes` that do not have a height value, i.e., they are `NA` in the table.
 
@@ -219,7 +216,6 @@ any(is.na(athletes$height))
 any(is.na(athletes$age))
 ```
 
-
 # The table function
 
 Another useful function is called `table()`. What does it do?
@@ -233,4 +229,8 @@ Note you need to use the `exclude = FALSE` parameter, if you want the `table()` 
 ```{r}
 table(athletes$height)
 table(athletes$height, exclude = FALSE)
+```
+
+```{r}
+athletes
 ```
