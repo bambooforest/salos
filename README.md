@@ -13,6 +13,9 @@ Steven Moran and Alena Witzlack-Makarevich
   - [RMarkdown](#rmarkdown-1)
   - [Data visualizations](#data-visualizations)
   - [Choosing the right statistic](#choosing-the-right-statistic)
+- [For the self tutoring session](#for-the-self-tutoring-session)
+  - [Beginners](#beginners)
+  - [Advanced](#advanced)
 
 ------------------------------------------------------------------------
 
@@ -249,3 +252,33 @@ Here are some cheat sheets on how to choose the right statistical test:
 And some more advanced explanation on the process:
 
 - <https://github.com/bambooforest/APY313/tree/main/7_data_modeling>
+
+# For the self tutoring session
+
+## Beginners
+
+Understanding Data Visualization
+
+- <https://app.datacamp.com/learn/courses/understanding-data-visualization>
+
+Introduction to the Tidyverse
+
+- <https://app.datacamp.com/learn/courses/introduction-to-the-tidyverse>
+
+Introduction to Data Visualization with ggplot2
+
+- <https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2>
+
+## Advanced
+
+Intermediate Data Visualization with ggplot2
+
+- <https://app.datacamp.com/learn/courses/intermediate-data-visualization-with-ggplot2>
+
+Categorical Data in the Tidyverse
+
+- <https://app.datacamp.com/learn/courses/categorical-data-in-the-tidyverse>
+
+Foundations of Inference in R
+
+- <https://app.datacamp.com/learn/courses/foundations-of-inference-in-r>
