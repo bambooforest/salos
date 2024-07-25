@@ -1,7 +1,7 @@
 Visualization basics
 ================
 Steven Moran and Alena Witzlack-Makarevich
-(24 July, 2024)
+(25 July, 2024)
 
 - [Case study: Come fly with me](#case-study-come-fly-with-me)
 - [Wide vs long table formats](#wide-vs-long-table-formats)
